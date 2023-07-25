@@ -1,3 +1,6 @@
+from ..utility import *
+
+
 class NextGameInit:
     def add_next_game_data(self, df):
         df_next = df.dropna(subset=["next_game_id"]).copy()
@@ -20,12 +23,7 @@ class NextGameInit:
         df_next["next_overtime"] = df_next["next_overtime"].astype(int)
         df_next["next_score"] = df_next["next_score"].astype(int)
         df_next["next_opp_score"] = df_next["next_opp_score"].astype(int)
-        return self.orderby_id(df_next)
-
-    def orderby_id(self, df, col_name="game_id"):
-        df = df.sort_values(by=col_name, ascending=True)
-        df.reset_index(drop=True, inplace=True)
-        return df
+        return orderby_id(df_next)
 
     remove_cols = [
         "game_id",

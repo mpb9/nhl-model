@@ -5,13 +5,13 @@ from sklearn.feature_selection import SequentialFeatureSelector
 from sklearn.linear_model import RidgeClassifier
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import accuracy_score
-from .constants import IGNORED_COLS
+from .constants import MODEL_CONST
 from .init_DFs.per_game import PerGameInit
 
 
 class PerGameModel:
     def __init__(self):
-        self.ignored_cols = IGNORED_COLS
+        self.ignored_cols = MODEL_CONST["IGNORED_COLS"]
         self.per_game_init = PerGameInit()
         self.reorder_col = self.per_game_init.reorder_col
 
@@ -19,21 +19,36 @@ class PerGameModel:
         self, df, target_name, target_cols, operations=[], include_null_targets=False
     ):
         df_target = df.dropna(subset=["next_game_id"]).copy()
-        for index, row in df_target.iterrows():
-            target_data = df.loc[
-                ((df["game_id"] == row["next_game_id"]) & (df["team"] == row["team"]))
-            ].iloc[0]
-            target = target_data[target_cols[0]]
-            for i in range(len(operations)):
-                if operations[i] == "+":
-                    target += target_data[target_cols[i + 1]]
-                elif operations[i] == "-":
-                    target -= target_data[target_cols[i + 1]]
-                elif operations[i] == "*":
-                    target *= target_data[target_cols[i + 1]]
-                elif operations[i] == "/":
-                    target /= target_data[target_cols[i + 1]]
-            df_target.loc[index, target_name] = target
+
+        if len(operations) == 0:
+            for index, row in df_target.iterrows():
+                target_data = df.loc[
+                    (
+                        (df["game_id"] == row["next_game_id"])
+                        & (df["team"] == row["team"])
+                    )
+                ].iloc[0]
+                target = target_data[target_cols[0]]
+                df_target.loc[index, target_name] = target
+        else:
+            for index, row in df_target.iterrows():
+                target_data = df.loc[
+                    (
+                        (df["game_id"] == row["next_game_id"])
+                        & (df["team"] == row["team"])
+                    )
+                ].iloc[0]
+                target = target_data[target_cols[0]]
+                for i in range(len(operations)):
+                    if operations[i] == "+":
+                        target += target_data[target_cols[i + 1]]
+                    elif operations[i] == "-":
+                        target -= target_data[target_cols[i + 1]]
+                    elif operations[i] == "*":
+                        target *= target_data[target_cols[i + 1]]
+                    elif operations[i] == "/":
+                        target /= target_data[target_cols[i + 1]]
+                df_target.loc[index, target_name] = target
 
         self.ignored_cols.append(target_name)
 

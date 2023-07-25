@@ -19,7 +19,15 @@ class PerGameInit:
         df = self.rename_col(df, "result", "reg_win")
         df = self.rename_col(df, "ot_result", "overtime")
         df["win"] = np.where(df["score"] > df["opp_score"], 1, 0)
-        df = df.drop(columns=["opp_result", "opp_next_game_id"])
+        df = df.drop(
+            columns=[
+                "opp_result",
+                "opp_next_game_id",
+                "opp_corsiPercentage",
+                "opp_fenwickPercentage",
+                "opp_xGoalsPercentage",
+            ]
+        )
         df["win"] = df["win"].astype(int)
         df = self.reorder_by_team_columns(df)
         df = self.orderby_id(df)
