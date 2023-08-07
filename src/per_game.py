@@ -7,6 +7,7 @@ from sklearn.linear_model import LinearRegression
 sys.path.append("/get_data")
 from .get_data.nhl_data import NHLData
 from .get_data.utility_data import UtilityData
+from .utility import *
 
 
 class PerGameData:
@@ -14,33 +15,8 @@ class PerGameData:
         self.nhl_data = NHLData()
         self.utility_data = UtilityData()
 
-    def prev_game_ids_DF(self, df):
-        df = self.orderby_id(df)
-        for index, row in df.iterrows():
-            prev_game_id_home = "NA"
-            prev_game_id_away = "NA"
-            for i in range(index - 1, -1, -1):
-                if df.loc[i, "season"] != row["season"]:
-                    break
-                if (
-                    df.loc[i, "home_team"] == row["home_team"]
-                    or df.loc[i, "away_team"] == row["home_team"]
-                ):
-                    prev_game_id_home = df.loc[i, "game_id"]
-                elif (
-                    df.loc[i, "home_team"] == row["away_team"]
-                    or df.loc[i, "away_team"] == row["away_team"]
-                ):
-                    prev_game_id_away = df.loc[i, "game_id"]
-                if prev_game_id_home != "NA" and prev_game_id_away != "NA":
-                    break
-            df.loc[index, "prev_game_id_home"] = prev_game_id_home
-            df.loc[index, "prev_game_id_away"] = prev_game_id_away
-        return df
-
     def next_game_ids_DF(self, df):
-        df = self.orderby_id(df)
-
+        df = orderby_id(df)
         for index, row in df.iterrows():
             next_game_id_home = "NA"
             for i in range(index + 1, len(df)):
@@ -77,8 +53,8 @@ class PerGameData:
         df_1 = self.by_team_away(df_1)
         df_2 = self.by_team_home(df_2)
         df = pd.concat([df_1, df_2], axis=0)
-        self.rename_col(df, "score", "final_score")
-        self.rename_col(df, "opp_score", "opp_final_score")
+        df = rename_col(df, "score", "final_score")
+        df = rename_col(df, "opp_score", "opp_final_score")
         for index, row in df.iterrows():
             if row["result"] == 1:
                 win = 1
@@ -94,11 +70,9 @@ class PerGameData:
         df = df.drop(columns=["result", "opp_result", "ot_result"])
         df = df.drop("opp_next_game_id", axis=1)
         df = self.reorder_by_team_columns(df)
-        df = self.orderby_id(df)
-        return df
+        return orderby_id(df)
 
     def by_team_away(self, df):
-        # info: GET COLUMNS
         columns = df.columns
         other_columns = []
         new_columns = []
@@ -120,11 +94,9 @@ class PerGameData:
 
         away_df = pd.concat(new_data, axis=1, keys=new_columns)
         away_df["is_home"] = 0
-        away_df = self.orderby_id(away_df)
-        return away_df
+        return orderby_id(away_df)
 
     def by_team_home(self, df):
-        # info: GET COLUMNS
         columns = df.columns
         other_columns = []
         new_columns = []
@@ -146,13 +118,7 @@ class PerGameData:
 
         home_df = pd.concat(new_data, axis=1, keys=new_columns)
         home_df["is_home"] = 1
-        home_df = self.orderby_id(home_df)
-        return home_df
-
-    def orderby_id(self, df):
-        df = df.sort_values(by="game_id", ascending=True)
-        df.reset_index(drop=True, inplace=True)
-        return df
+        return orderby_id(home_df)
 
     def reorder_by_team_columns(self, df):
         cols_2_move = [
@@ -177,16 +143,6 @@ class PerGameData:
             df.insert(col_movin[1], col_movin[0], column_to_move)
         return df
 
-    def rename_col(self, df, col_name, new_col_name):
-        df.rename(columns={col_name: new_col_name}, inplace=True)
-        return df
-
-    def combine_tables(self, tables):
-        df = pd.DataFrame(tables[0])
-        for table in tables[1:]:
-            df = pd.merge(df, pd.DataFrame(table), on="game_id")
-        return df
-
     def season_per_game_data(self, situation, season):
         season_condition = {"header": "season", "conditional": "=", "value": season}
         games = self.nhl_data.conditional_data("games", [season_condition])
@@ -204,5 +160,4 @@ class PerGameData:
                 season_condition,
             ],
         )
-        data = self.combine_tables([games, prev_game_ids, odds_x_game])
-        return data
+        return merge_df([games, prev_game_ids, odds_x_game])

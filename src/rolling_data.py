@@ -1,7 +1,7 @@
 import pandas as pd
 
 from src.utility import *
-from src.constants import MODEL_CONST
+from src.constants import *
 
 
 class RollingData:
@@ -46,7 +46,7 @@ class RollingData:
         return rolling
 
     def get_essentials(self, df):
-        self.essentials = merge_data(df.copy(), self.df.copy())
+        self.essentials = concat_df(df.copy(), self.df.copy())
 
         for col in self.essentials.columns:
             if (

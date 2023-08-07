@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-from src.constants import MODEL_CONST
+from src.constants import *
 from src.utility import *
 from src.rolling_data import RollingData
 from src.per_game_model import PerGameModel
@@ -20,22 +20,17 @@ def quick_init__per_game(
     results = []
     for season in season_arr:
         for situation in situation_arr:
-            games = pd.read_csv(
-                MODEL_CONST["CSV_DB_PATH"] + f"{season}/games_{season}.csv"
-            )
+            games = pd.read_csv(CSV_DB_PATH + f"{season}/games_{season}.csv")
             team_SIT = pd.read_csv(
-                MODEL_CONST["CSV_DB_PATH"]
-                + f"{season}/team_x_game_{situation}_{season}.csv"
+                CSV_DB_PATH + f"{season}/team_x_game_{situation}_{season}.csv"
             )
-            odds = pd.read_csv(
-                MODEL_CONST["CSV_DB_PATH"] + f"{season}/odds_x_game_{season}.csv"
-            )
+            odds = pd.read_csv(CSV_DB_PATH + f"{season}/odds_x_game_{season}.csv")
 
             pg = pd.merge(pd.merge(team_SIT, games), odds)
 
             pg = initPG.init_per_game(pg)
             pg.to_csv(
-                MODEL_CONST["CSV_TEMP_PATH"] + f"PER_GAME_{situation}_{season}.csv",
+                CSV_TEMP_PATH + f"PER_GAME_{situation}_{season}.csv",
                 header=True,
                 index=False,
             )
@@ -43,33 +38,25 @@ def quick_init__per_game(
             pg_copy = pg.copy()
             pg_teams = initPG.init_by_team(pg, pg_copy)
             pg_teams.to_csv(
-                MODEL_CONST["CSV_TEMP_PATH"]
-                + f"PER_GAME_BY_TEAM_{situation}_{season}.csv",
+                CSV_TEMP_PATH + f"PER_GAME_BY_TEAM_{situation}_{season}.csv",
                 header=True,
                 index=False,
             )
 
             if auto_export:
                 pg.to_csv(
-                    MODEL_CONST["CSV_DB_PATH"]
-                    + f"{season}/PER_GAME_{situation}_{season}.csv",
+                    CSV_DB_PATH + f"{season}/PER_GAME_{situation}_{season}.csv",
                     header=True,
                     index=False,
                 )
-                os.remove(
-                    MODEL_CONST["CSV_TEMP_PATH"] + f"PER_GAME_{situation}_{season}.csv"
-                )
+                os.remove(CSV_TEMP_PATH + f"PER_GAME_{situation}_{season}.csv")
 
                 pg_teams.to_csv(
-                    MODEL_CONST["CSV_DB_PATH"]
-                    + f"{season}/PER_GAME_BY_TEAM_{situation}_{season}.csv",
+                    CSV_DB_PATH + f"{season}/PER_GAME_BY_TEAM_{situation}_{season}.csv",
                     header=True,
                     index=False,
                 )
-                os.remove(
-                    MODEL_CONST["CSV_TEMP_PATH"]
-                    + f"PER_GAME_BY_TEAM_{situation}_{season}.csv"
-                )
+                os.remove(CSV_TEMP_PATH + f"PER_GAME_BY_TEAM_{situation}_{season}.csv")
     return results
 
 
@@ -91,8 +78,7 @@ def quick_init__rolling(
         for season in season_arr:
             for situation in situation_arr:
                 df = pd.read_csv(
-                    MODEL_CONST["CSV_DB_PATH"]
-                    + f"{season}/PER_GAME_BY_TEAM_{situation}_{season}.csv"
+                    CSV_DB_PATH + f"{season}/PER_GAME_BY_TEAM_{situation}_{season}.csv"
                 )
 
                 if include_null_targets:
@@ -103,17 +89,14 @@ def quick_init__rolling(
                 else:
                     df = pgModel.add_target(df, target, target_cols, target_operations)
 
-                selected_cols = df.columns[
-                    ~df.columns.isin(MODEL_CONST["IGNORED_COLS"])
-                ]
+                selected_cols = df.columns[~df.columns.isin(IGNORED_COLS)]
 
                 rolling = RollingData(
                     df.copy(), selected_cols, num_games, include_null_next, groupby_cols
                 )
 
                 rolling.essentials.to_csv(
-                    MODEL_CONST["CSV_TEMP_PATH"]
-                    + f"ROLLING_{num_games}_{situation}_{season}.csv",
+                    CSV_TEMP_PATH + f"ROLLING_{num_games}_{situation}_{season}.csv",
                     header=True,
                     index=False,
                 )
@@ -122,14 +105,13 @@ def quick_init__rolling(
 
                 if auto_export:
                     rolling.essentials.to_csv(
-                        MODEL_CONST["CSV_DB_PATH"]
+                        CSV_DB_PATH
                         + f"{season}/ROLLING_{num_games}_{situation}_{season}.csv",
                         header=True,
                         index=False,
                     )
                     os.remove(
-                        MODEL_CONST["CSV_TEMP_PATH"]
-                        + f"ROLLING_{num_games}_{situation}_{season}.csv"
+                        CSV_TEMP_PATH + f"ROLLING_{num_games}_{situation}_{season}.csv"
                     )
     return results
 
