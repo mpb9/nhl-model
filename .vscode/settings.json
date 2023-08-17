@@ -4,5 +4,6 @@
   },
   "python.formatting.provider": "none",
   "python.analysis.extraPaths": [],
-  "git.ignoreLimitWarning": true
+  "git.ignoreLimitWarning": true,
+  "editor.fontVariations": false
 }

@@ -9,6 +9,8 @@ from .constants import *
 from .init_DFs.per_game import PerGameInit
 
 
+# purpose: INITIALIZE PER GAME MODELS
+# ! work in progress... a lot might be out of date
 class PerGameModel:
     def __init__(self):
         self.ignored_cols = IGNORED_COLS

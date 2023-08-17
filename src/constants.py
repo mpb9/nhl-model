@@ -1,3 +1,6 @@
+# constants.py
+# Purpose: ALL COMMONLY USED CONSTANTS
+
 CONDITIONALS = ["=", "!=", ">", "<", ">=", "<=", "LIKE"]
 CSV_MODEL_PATH = "C:/wamp64/www/bet-nhl-model/models/"
 CSV_DB_PATH = "C:/Users/Michael Beebe/OneDrive - University of North Carolina at Chapel Hill/Desktop/bet-nhl-data/"

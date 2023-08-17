@@ -9,6 +9,9 @@ from .get_data.nhl_data import NHLData
 from .get_data.utility_data import UtilityData
 from .utility import *
 
+# Purpose: INITIALIZE PER GAME DATASETS
+# ! work in progress... a lot might be out of date
+
 
 class PerGameData:
     def __init__(self):

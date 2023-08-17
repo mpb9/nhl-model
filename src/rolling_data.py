@@ -4,6 +4,8 @@ from src.utility import *
 from src.constants import *
 
 
+# Purpose: ROLLING AVERAGES FOR EACH TEAM OVER SPAN
+# ! DELETE THIS FILE SOON... REPLACED BY avgs.py
 class RollingData:
     def __init__(
         self,
