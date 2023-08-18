@@ -1,22 +1,70 @@
 # NHL Model
-## Initalizing Datasets
-### **_Rolling Averages_**
-* PREVIOUS X GAMES 
-  
-  **get_rolling_avgs**(df, _number of games, include_null_next=True, suffix=True, add_objs=["season", "game_number"]_)
 
-* SEASON TO DATE
+## _Initalizing Datasets_
 
-  **get_season_avgs**(df, _suffix=True, add_objs=["season", "game_number"]_)
+### Rolling Averages
+> METHODS
+```python
+def rolling_avgs(
+    df, num_games, include_null_next=True, suffix=True, add_objs=["season", "game_number"],
+):
+```
+```python
+def season_avgs(
+    df, suffix=True, add_objs=["season", "game_number"]
+):
+```
 
-### **_Trajectory_**
-* PREVIOUS X GAMES vs. SEASON TO DATE
+> PREVIOUS X GAMES  
+```python
+get_rolling_avgs(df, number of games, include_null_next=True, suffix=True, add_objs=["season", "game_number"])
+```
 
-  **get_trajectory_quick**(df_rolling, df_szn, _recent_num, past_num, is_season=**True**, add_objs=["season", "game_number"], suffix=False_)
+> SEASON TO DATE  
+```python
+get_season_avgs(df, suffix=True, add_objs=["season", "game_number"])
+```
 
-* PREVIOUS X GAMES vs. PREVIOUS Y GAMES
+### Trajectory
+> METHODS
+```python
+def trajectory(
+    df, recent_num, past_num, add_objs=["season", "game_number"], suffix=True,
+):
+```
+```python
+def trajectory_season(
+    df, recent_num, add_objs=["season", "game_number"], suffix=True,
+):
+```
+```python
+def trajectory_quick(
+    recent_df, past_df, recent_num, past_num, is_season=False, add_objs=["season", "game_number"], suffix=False,
+):
+```
 
-  **get_trajectory_quick**(df_rolling_X, df_rolling_Y, _recent_num, past_num, is_season=**False**, add_objs=["season", "game_number"], suffix=False_)
-## Python Info
-* _Virtual Environment_: **myenv\Scripts\activate**
-* _Jupyter Notebook_: **jupyter notebook**
+> PREVIOUS X GAMES vs. PREVIOUS Y GAMES
+```python
+trajectory(df, recent_num, past_num)
+```
+```python
+trajectory_quick(df_X, df_Y, recent_num, past_num, False)
+```
+
+> PREVIOUS X GAMES vs. SEASON TO DATE
+```python
+trajectory_season(df, recent_num)
+```
+```python
+trajectory_quick(df_X, df_szn, recent_num, past_num, True)  
+```
+
+## _Command Line_
+> _Virtual Environment_:
+```console
+myenv\Scripts\activate
+```
+> _Jupyter Notebook_:
+```console
+jupyter notebook
+```
