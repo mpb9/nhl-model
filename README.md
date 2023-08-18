@@ -58,6 +58,9 @@ trajectory_quick(df_X, df_szn, recent_num, past_num, True)
 ```console
 myenv\Scripts\activate
 ```
+```console
+deactivate
+```
 > _Jupyter Notebook_:
 ```console
 jupyter notebook
