@@ -6,7 +6,7 @@ from src.constants import *
 # Purpose: ROLLING AVERAGES FOR EACH TEAM OVER SPAN
 
 
-def get_rolling_avgs(
+def rolling_avgs(
     df,
     num_games,
     include_null_next=True,
@@ -37,7 +37,7 @@ def team_avg_helper(group, obj_cols, data_cols, num_games):
     return pd.concat([group[obj_cols].copy(), roll_data.copy()], axis=1)
 
 
-def get_season_avgs(df, suffix=True, add_objs=["season", "game_number"]):
+def season_avgs(df, suffix=True, add_objs=["season", "game_number"]):
     df_SZN = pd.DataFrame()
 
     obj_cols = list(df.select_dtypes(include=["object"]).columns) + add_objs

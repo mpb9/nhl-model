@@ -8,9 +8,11 @@ from src.avgs import *
 
 
 # info: get difference between recent and past averages
-def get_form(df, recent_num, past_num, add_objs=["season", "game_number"], suffix=True):
-    df_recent = get_rolling_avgs(df.copy(), recent_num, False, False)
-    df_past = get_rolling_avgs(df.copy(), past_num, False, False)
+def trajectory(
+    df, recent_num, past_num, add_objs=["season", "game_number"], suffix=True
+):
+    df_recent = rolling_avgs(df.copy(), recent_num, False, False)
+    df_past = rolling_avgs(df.copy(), past_num, False, False)
 
     obj_cols = list(df_recent.select_dtypes(include=["object"]).columns) + add_objs
     data_cols = [col for col in df_recent.columns if col not in obj_cols]
@@ -25,9 +27,9 @@ def get_form(df, recent_num, past_num, add_objs=["season", "game_number"], suffi
 
 
 # info: get difference between recent and season averages
-def get_form_season(df, recent_num, add_objs=["season", "game_number"], suffix=True):
-    df_recent = get_rolling_avgs(df.copy(), recent_num, False, False)
-    df_season = get_season_avgs(df.copy(), False)
+def trajectory_season(df, recent_num, add_objs=["season", "game_number"], suffix=True):
+    df_recent = rolling_avgs(df.copy(), recent_num, False, False)
+    df_season = season_avgs(df.copy(), False)
 
     obj_cols = list(df_season.select_dtypes(include=["object"]).columns) + add_objs
     data_cols = [col for col in df_season.columns if col not in obj_cols]
@@ -42,7 +44,7 @@ def get_form_season(df, recent_num, add_objs=["season", "game_number"], suffix=T
     return organize(pd.concat([df_obj.copy(), df_data.copy()], axis=1))
 
 
-def get_form_quick(
+def trajectory_quick(
     recent_df,
     past_df,
     rec_num,
