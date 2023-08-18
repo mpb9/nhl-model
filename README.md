@@ -15,11 +15,11 @@ def season_avgs(
 ```
 > _previous **X** games_
 ```python
-get_rolling_avgs(df, num_games)
+rolling_avgs(df, num_games)
 ```
 > _season to date_
 ```python
-get_season_avgs(df)
+season_avgs(df)
 ```
 
 ### Trajectory
