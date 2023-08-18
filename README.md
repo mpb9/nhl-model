@@ -3,7 +3,6 @@
 ## _Initalizing Datasets_
 
 ### Rolling Averages
-> METHODS
 ```python
 def rolling_avgs(
     df, num_games, include_null_next=True, suffix=True, add_objs=["season", "game_number"],
@@ -11,22 +10,19 @@ def rolling_avgs(
 ```
 ```python
 def season_avgs(
-    df, suffix=True, add_objs=["season", "game_number"]
+    df, suffix=True, add_objs=["season", "game_number"],
 ):
 ```
-
-> PREVIOUS X GAMES  
+> _previous **X** games_
 ```python
-get_rolling_avgs(df, number of games, include_null_next=True, suffix=True, add_objs=["season", "game_number"])
+get_rolling_avgs(df, num_games)
 ```
-
-> SEASON TO DATE  
+> _season to date_
 ```python
-get_season_avgs(df, suffix=True, add_objs=["season", "game_number"])
+get_season_avgs(df)
 ```
 
 ### Trajectory
-> METHODS
 ```python
 def trajectory(
     df, recent_num, past_num, add_objs=["season", "game_number"], suffix=True,
@@ -42,19 +38,17 @@ def trajectory_quick(
     recent_df, past_df, recent_num, past_num, is_season=False, add_objs=["season", "game_number"], suffix=False,
 ):
 ```
-
-> PREVIOUS X GAMES vs. PREVIOUS Y GAMES
+>  _previous **X** VS. **Y** games_
 ```python
 trajectory(df, recent_num, past_num)
 ```
 ```python
 trajectory_quick(df_X, df_Y, recent_num, past_num, False)
 ```
-
-> PREVIOUS X GAMES vs. SEASON TO DATE
-```python
+> _previous **X** games VS. season to date_
+  ```python
 trajectory_season(df, recent_num)
-```
+  ```
 ```python
 trajectory_quick(df_X, df_szn, recent_num, past_num, True)  
 ```
