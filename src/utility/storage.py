@@ -7,38 +7,50 @@ from ..constants import *
 
 
 # info: Exporting Stuff
-def export_csv(df, season, situation, name, suffix=False, pretty=True):
+def export_csv(df, szn, sit, name="", subfol="", pretty=True):
     if pretty:
         df = pretty_df(df)
     df.to_csv(
         CSV_DB_PATH
-        + f"{season}/{name}_{situation}{'' if not suffix else f'_{season}'}.csv",
+        + f"{szn}{'' if len(subfol)<1 else f'/{subfol}'}/{'' if len(name)<1 else f'{name}_'}{sit}{'' if szn == 'all' else f'_{szn}'}.csv",
         header=True,
         index=False,
     )
     return
 
 
-def export_csv_no_nulls(df, season, situation, name, suffix=False, pretty=True):
+def export_csv_no_nulls(df, szn, sit, name="", subfol="", pretty=True):
     if pretty:
         df = pretty_df(df)
     df = drop_nulls(df)
     df.to_csv(
         CSV_DB_PATH
-        + f"{season}/{name}_{situation}{'' if not suffix else f'_{season}'}.csv",
+        + f"{szn}{'' if len(subfol)<1 else f'/{subfol}'}/{'' if len(name)<1 else f'{name}_'}{sit}{'' if szn == 'all' else f'_{szn}'}.csv",
         header=True,
         index=False,
     )
     return
 
 
-def export_csv_custom(df, season, name, drop_nulls=True, pretty=True):
+def export_csv_custom(df, szn, name, drop_nulls=True, pretty=True):
     if pretty:
         df = pretty_df(df)
     if drop_nulls:
         df = drop_nulls(df)
     df.to_csv(
-        CSV_DB_PATH + f"{season}/{name}.csv",
+        CSV_DB_PATH + f"{szn}/{name}.csv",
+        header=True,
+        index=False,
+    )
+    return
+
+
+def export_csv_test(df, szn, sit, name="", pretty=True):
+    if pretty:
+        df = pretty_df(df)
+    df.to_csv(
+        CSV_DB_PATH
+        + f"test/{'' if len(name)<1 else f'{name}_'}{sit}{'' if szn == 'all' else f'_{szn}'}.csv",
         header=True,
         index=False,
     )
@@ -46,10 +58,10 @@ def export_csv_custom(df, season, name, drop_nulls=True, pretty=True):
 
 
 # info: Retrieving Stuff
-def retrieve_csv(season, situation, name, suffix=False):
+def retrieve_csv(szn, sit, name="", subfol=""):
     return pd.read_csv(
         CSV_DB_PATH
-        + f"{season}/{name}_{situation}{'' if not suffix else f'_{season}'}.csv"
+        + f"{szn}{'' if len(subfol)<1 else f'/{subfol}'}/{'' if len(name)<1 else f'{name}_'}{sit}{'' if szn == 'all' else f'_{szn}'}.csv",
     )
 
 

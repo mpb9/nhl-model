@@ -3,7 +3,34 @@ import pandas as pd
 
 
 def linear_coef(x, y, sample_size):
-    if sample_size != len(y):
+    mean_x = x.mean()
+    mean_y = y.mean()
+
+    # Calculate cross-deviation and deviation about x
+    SS_xy = np.sum(y.copy() * x.copy()) - sample_size * mean_y * mean_x
+    SS_xx = np.sum(x.copy() * x.copy()) - sample_size * mean_x * mean_x
+
+    # Calculate regression coefficients
+    b1 = SS_xy / SS_xx
+    b0 = mean_y - b1 * mean_x
+
+    return [b0, b1]
+
+
+def linear_coefs_grouped(x, y_group):
+    B = pd.DataFrame(index=["b0", "b1"], columns=y_group.columns)
+    for col in B:
+        coefs = linear_coef(x, y_group[col].values, len(y_group))
+        B[col] = coefs
+    return B.copy()
+
+
+# NOT USING THIS (KEEPING AS LAST RESORT UNTIL FURTHER TESTING)
+""" import numpy as np
+import pandas as pd
+
+def linear_coef(x, y, sample_size):
+    if sample_size > len(x):
         return [np.nan, np.nan]
 
     mean_x = x.mean()
@@ -22,9 +49,9 @@ def linear_coef(x, y, sample_size):
 
 def linear_coefs_grouped(x, y_group, sample_size):
     B = pd.DataFrame(index=["b0", "b1"], columns=y_group.columns)
-    if sample_size != len(y_group):
+    if sample_size > len(y_group):
         return B
-    for col in B:
-        coefs = linear_coef(x, y_group[col].values, sample_size)
+    for col in B: 
+        coefs = linear_coef(x, y_group[col].to_numpy(), sample_size)
         B[col] = coefs
-    return B
+    return B.copy() """

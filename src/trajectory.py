@@ -49,6 +49,7 @@ def trajectory_season(df, recent_num, add_objs=["season", "game_number"], suffix
         for col in data_cols:
             df_data = rename_col(df_data, col, f"{col}_{recent_num}vSZN")
 
+    # ! this might be ignoring the first rolling avg value.. check it out
     return drop_on_game_number(
         drop_nulls(pd.concat([df_obj.copy(), df_data.copy()], axis=1)), recent_num
     )
@@ -77,6 +78,7 @@ def trajectory_quick(
             else:
                 df_data = rename_col(df_data, col, f"{col}_{rec_num}v{past_num}")
 
+    # ! this might be ignoring the first rolling avg value.. check it out
     if is_season:
         return drop_on_game_number(
             drop_nulls(pd.concat([df_obj.copy(), df_data.copy()], axis=1)), rec_num
@@ -87,41 +89,50 @@ def trajectory_quick(
 # info: get linear regression of trajectory for previous X games
 # includes the current game's data (:
 def trajectory_linear(df, num_games, add_objs=["season", "game_number"], suffix=False):
-    df_b0 = pd.DataFrame()
-    df_b1 = pd.DataFrame()
+    b0 = df.iloc[:0].copy()
+    b1 = df.iloc[:0].copy()
 
     obj_cols = list(df.select_dtypes(include=["object"]).columns) + add_objs
     data_cols = [col for col in df.columns if col not in obj_cols]
-    x = list(range(0, num_games))
+    x = np.array(list(range(0, num_games)))
 
     for season in df["season"].unique():
         for team in df["team"].unique():
             group = organize(
                 df[((df["season"] == season) & (df["team"] == team))].copy()
             )
-
             df_objs = group[obj_cols].copy()
             df_data = group[data_cols].copy()
 
-            # Set df_b0 and df_b1 data_col values to NaN where game_number < num_games
-            group.loc[(group["game_number"] < num_games), data_cols] = np.nan
-            df_b0 = pd.concat([df_b0, group.iloc[0 : num_games - 1]], ignore_index=True)
-            df_b1 = pd.concat([df_b1, group.iloc[0 : num_games - 1]], ignore_index=True)
-            group = group.loc[group["game_number"] >= num_games]
+            for game_index in range(num_games - 1, len(group)):
+                B = linear_coefs_grouped(
+                    x.copy(),
+                    df_data.loc[game_index - num_games + 1 : game_index].copy(),
+                )
+                B.insert(0, "game_number", [game_index + 1, game_index + 1])
 
-            # Retrieve Linear Coefficients for each game
-            for game in range(num_games, len(group) + 1):
-                B = linear_coefs_grouped(x, df_data.loc[game - num_games : game - 1])
-                df_b0 = pd.concat(
-                    [df_b0, pd.concat([df_objs.loc[game - 1], B.iloc[0]], axis=0)],
+                b0 = pd.concat(
+                    [
+                        b0.copy(),
+                        df_objs[df_objs.game_number == game_index + 1].merge(
+                            B.loc[:"b0"].copy(), on="game_number"
+                        ),
+                    ],
                     ignore_index=True,
                 )
-                df_b1 = pd.concat(
-                    [df_b1, pd.concat([df_objs.loc[game - 1], B.iloc[1]], axis=0)],
+
+                b1 = pd.concat(
+                    [
+                        b1.copy(),
+                        df_objs[df_objs.game_number == game_index + 1].merge(
+                            B.loc["b1":].copy(), on="game_number"
+                        ),
+                    ],
                     ignore_index=True,
                 )
+
     if suffix:
         for col in data_cols:
-            df_b0 = rename_col(df_b0, col, f"{col}_{num_games}_b0")
-            df_b1 = rename_col(df_b1, col, f"{col}_{num_games}_b1")
-    return [organize(df_b0), organize(df_b1)]
+            b0 = rename_col(b0.copy(), col, f"{col}_{num_games}_b0")
+            b1 = rename_col(b1.copy(), col, f"{col}_{num_games}_b1")
+    return [organize(b0), organize(b1)]
