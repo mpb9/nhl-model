@@ -1,7 +1,13 @@
 import os
 import pandas as pd
+
 from src.constants import *
-from src.utility import *
+from src.utility.personal import *
+from src.utility.storage import *
+from src.utility.structure import *
+
+from src.avgs import *
+
 from src.rolling_data import RollingData
 from src.per_game_model import PerGameModel
 from src.init_DFs.per_game import PerGameInit
@@ -116,6 +122,38 @@ def quick_init__rolling(
     return results
 
 
+def quick_init__rolling_season(
+    season_arr,
+    situation_arr,
+    suffix=False,
+    add_obj_cols=["season", "game_number"],
+    auto_export=True,
+):
+    results = []
+    for season in season_arr:
+        for situation in situation_arr:
+            if season == "all":
+                df = primary_csv()
+            else:
+                df = pd.read_csv(
+                    CSV_DB_PATH + f"{season}/PER_GAME_BY_TEAM_{situation}_{season}.csv"
+                )
+
+            results.append(season_avgs(df, suffix, add_obj_cols))
+
+            if auto_export:
+                export_csv(
+                    df,
+                    season,
+                    situation,
+                    name="ROLLING_SEASON",
+                    subfol="ROLLING",
+                    pretty=True,
+                )
+
+    return results
+
+
 def quick_init__all(
     season_arr,
     situation_arr,
@@ -127,6 +165,8 @@ def quick_init__all(
     target="next_reg_win",
     target_cols=["reg_win"],
     target_operations=[],
+    suffix=False,
+    add_obj_cols=["season", "game_number"],
     auto_export=True,
 ):
     results = []
@@ -144,6 +184,11 @@ def quick_init__all(
             target_cols,
             target_operations,
             auto_export,
+        )
+    )
+    results.append(
+        quick_init__rolling_season(
+            season_arr, situation_arr, suffix, add_obj_cols, auto_export
         )
     )
     return results
