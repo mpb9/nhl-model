@@ -15,7 +15,11 @@ from src.avgs import *
 
 # info: get difference between recent and past averages
 def trajectory(
-    df, recent_num, past_num, add_objs=["season", "game_number"], suffix=False
+    df,
+    recent_num,
+    past_num,
+    add_objs=["season", "game_number", "is_home", "iceTime"],
+    suffix=False,
 ):
     df_recent = rolling_avgs(
         df.copy(), recent_num, include_null_next=False, suffix=False
@@ -35,7 +39,12 @@ def trajectory(
 
 
 # info: get difference between recent and season averages
-def trajectory_season(df, recent_num, add_objs=["season", "game_number"], suffix=False):
+def trajectory_season(
+    df,
+    recent_num,
+    add_objs=["season", "game_number", "is_home", "iceTime"],
+    suffix=False,
+):
     df_recent = rolling_avgs(df.copy(), recent_num, False, False)
     df_season = season_avgs(df.copy(), False)
 
@@ -62,7 +71,7 @@ def trajectory_quick(
     rec_num,
     past_num,
     is_season=False,
-    add_objs=["season", "game_number"],
+    add_objs=["season", "game_number", "is_home", "iceTime"],
     suffix=False,
 ):
     obj_cols = list(recent_df.select_dtypes(include=["object"]).columns) + add_objs
@@ -88,7 +97,12 @@ def trajectory_quick(
 
 # info: get linear regression of trajectory for previous X games
 # includes the current game's data (:
-def trajectory_linear(df, num_games, add_objs=["season", "game_number"], suffix=False):
+def trajectory_linear(
+    df,
+    num_games,
+    add_objs=["season", "game_number", "is_home", "iceTime"],
+    suffix=False,
+):
     b0 = df.iloc[:0].copy()
     b1 = df.iloc[:0].copy()
 

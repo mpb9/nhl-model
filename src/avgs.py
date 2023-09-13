@@ -16,7 +16,7 @@ def rolling_avgs(
     num_games,
     include_null_next=True,
     suffix=False,
-    add_objs=["season", "game_number"],
+    add_objs=["season", "game_number", "is_home", "iceTime"],
 ):
     if include_null_next:
         df["next_game_id"].fillna("NA", inplace=True)
@@ -41,7 +41,9 @@ def team_avg_helper(group, obj_cols, data_cols, num_games):
     return pd.concat([group[obj_cols].copy(), roll_data.copy()], axis=1)
 
 
-def season_avgs(df, suffix=False, add_objs=["season", "game_number"]):
+def season_avgs(
+    df, suffix=False, add_objs=["season", "game_number", "is_home", "iceTime"]
+):
     df_SZN = pd.DataFrame()
 
     obj_cols = list(df.select_dtypes(include=["object"]).columns) + add_objs

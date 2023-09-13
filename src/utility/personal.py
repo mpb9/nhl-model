@@ -80,3 +80,22 @@ def pretty_df(df):
     df = reorder_col(df.copy(), "is_home", 17)
     df = reorder_col(df.copy(), "iceTime", 18)
     return organize(df)
+
+
+# info: Dataframe with only game_id, team, game_number & non-Object columns
+def speedy_df(df, add_objs=["season", "game_number", "is_home", "iceTime"]):
+    obj_cols = list(df.select_dtypes(include=["object"]).columns) + add_objs
+    data_cols = ["game_id", "team", "game_number"] + [
+        col for col in df.columns if col not in obj_cols
+    ]
+    return organize(df[data_cols].copy())
+
+
+# info: Convert speedy_df to original format
+# ! need to test this
+def speedy_to_original(df, speedy_df):
+    return df.merge(
+        speedy_df,
+        left_on=["game_id", "team", "game_number"],
+        right_on=["game_id", "team", "game_number"],
+    )
