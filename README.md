@@ -25,12 +25,12 @@ season_avgs(df)
 ### Trajectory
 ```python
 def trajectory(
-    df, recent_num, past_num, add_objs=["season", "game_number"], suffix=True,
+    df, recent_num, past_num, add_objs=["season", "game_number"], suffix=False,
 ):
 ```
 ```python
 def trajectory_season(
-    df, recent_num, add_objs=["season", "game_number"], suffix=True,
+    df, recent_num, add_objs=["season", "game_number"], suffix=False,
 ):
 ```
 ```python
@@ -50,7 +50,7 @@ trajectory_quick(df_X, df_Y, recent_num, past_num, False)
 trajectory_season(df, recent_num)
   ```
 ```python
-trajectory_quick(df_X, df_szn, recent_num, past_num, True)  
+trajectory_quick(df_X, df_szn, recent_num, past_num, False)  
 ```
 
 ## _Command Line_

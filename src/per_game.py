@@ -7,7 +7,10 @@ from sklearn.linear_model import LinearRegression
 sys.path.append("/get_data")
 from .get_data.nhl_data import NHLData
 from .get_data.utility_data import UtilityData
-from .utility import *
+
+from src.utility.storage import *
+from src.utility.structure import *
+from src.utility.personal import *
 
 # Purpose: INITIALIZE PER GAME DATASETS
 # ! work in progress... a lot might be out of date

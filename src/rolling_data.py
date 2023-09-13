@@ -1,6 +1,8 @@
 import pandas as pd
 
-from src.utility import *
+from src.utility.storage import *
+from src.utility.structure import *
+from src.utility.personal import *
 from src.constants import *
 
 
