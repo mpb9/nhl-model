@@ -5,12 +5,12 @@
 ### Rolling Averages
 ```python
 def rolling_avgs(
-    df, num_games, include_null_next=True, suffix=True, add_objs=["season", "game_number"],
+    df, num_games, include_null_next=True, suffix=True, add_objs=["season", "game_number", "is_home", "iceTime"],
 ):
 ```
 ```python
 def season_avgs(
-    df, suffix=True, add_objs=["season", "game_number"],
+    df, suffix=True, add_objs=["season", "game_number", "is_home", "iceTime"],
 ):
 ```
 > _previous **X** games_
@@ -25,17 +25,22 @@ season_avgs(df)
 ### Trajectory
 ```python
 def trajectory(
-    df, recent_num, past_num, add_objs=["season", "game_number"], suffix=False,
+    df, recent_num, past_num, add_objs=["season", "game_number", "is_home", "iceTime"], suffix=False,
 ):
 ```
 ```python
 def trajectory_season(
-    df, recent_num, add_objs=["season", "game_number"], suffix=False,
+    df, recent_num, add_objs=["season", "game_number", "is_home", "iceTime"], suffix=False,
 ):
 ```
 ```python
 def trajectory_quick(
-    recent_df, past_df, recent_num, past_num, is_season=False, add_objs=["season", "game_number"], suffix=False,
+    recent_df, past_df, recent_num, past_num, is_season=False, add_objs=["season", "game_number", "is_home", "iceTime"], suffix=False,
+):
+```
+```python
+def trajectory_linear(
+    df, num_games, add_objs=["season", "game_number", "is_home", "iceTime"], suffix=False,
 ):
 ```
 >  _previous **X** VS. **Y** games_
