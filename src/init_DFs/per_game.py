@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
 
+from src.utility.personal import *
+
 
 class PerGameInit:
     def init_per_game(self, df):
@@ -29,9 +31,8 @@ class PerGameInit:
             ]
         )
         df["win"] = df["win"].astype(int)
-        df = self.reorder_by_team_columns(df)
-        df = self.orderby_id(df)
-        return df
+        df = add_game_number(df)
+        return pretty_df(df)
 
     def next_game_ids_HA(self, df):
         df = self.orderby_id(df)

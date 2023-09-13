@@ -83,27 +83,3 @@ def get_NHL_teams():
 
 def get_seasons():
     return pd.read_csv(CSV_DB_PATH + "utils/seasons.csv")
-
-
-# info: Formats DF in my pretty format
-def pretty_df(df):
-    df = reorder_col(df.copy(), "game_id", 0)
-    df = reorder_col(df.copy(), "team", 1)
-    df = reorder_col(df.copy(), "opp_team", 2)
-    df = reorder_col(df.copy(), "season", 3)
-    df = reorder_col(df.copy(), "game_number", 4)
-    df = reorder_col(df.copy(), "next_game_id", 5)
-    df = reorder_col(df.copy(), "score", 6)
-    df = reorder_col(df.copy(), "opp_score", 7)
-    df = reorder_col(df.copy(), "win", 8)
-    df = reorder_col(df.copy(), "reg_win", 9)
-    df = reorder_col(df.copy(), "overtime", 10)
-    df = reorder_col(df.copy(), "odds", 11)
-    df = reorder_col(df.copy(), "opp_odds", 12)
-    df = reorder_col(df.copy(), "ot_odds", 13)
-    df = reorder_col(df.copy(), "situation", 14)
-    df = reorder_col(df.copy(), "game_date", 15)
-    df = reorder_col(df.copy(), "game_time", 16)
-    df = reorder_col(df.copy(), "is_home", 17)
-    df = reorder_col(df.copy(), "iceTime", 18)
-    return organize(df)
