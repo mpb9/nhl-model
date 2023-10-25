@@ -32,6 +32,7 @@ class PerGameInit:
         )
         df["win"] = df["win"].astype(int)
         df = add_game_number(df)
+        df = add_rest(df)
         return pretty_df(df)
 
     def next_game_ids_HA(self, df):
@@ -161,10 +162,12 @@ class PerGameInit:
 
     def reorder_by_team_columns(self, df):
         cols_2_move = [
+            ["iceTime", 1],
             ["is_home", 1],
-            ["situation", 1],
+            ["rest", 1],
             ["game_time", 1],
             ["game_date", 1],
+            ["situation", 1],
             ["ot_odds", 1],
             ["opp_odds", 1],
             ["odds", 1],
@@ -174,6 +177,7 @@ class PerGameInit:
             ["opp_score", 1],
             ["score", 1],
             ["next_game_id", 1],
+            ["game_number", 1],
             ["season", 1],
             ["opp_team", 1],
             ["team", 1],

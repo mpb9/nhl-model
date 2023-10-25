@@ -3,7 +3,7 @@ import pandas as pd
 from src.utility.storage import *
 from src.utility.structure import *
 from src.utility.personal import *
-from src.constants import *
+from src.utility.constants import *
 
 
 # Purpose: ROLLING AVERAGES FOR EACH TEAM OVER SPAN

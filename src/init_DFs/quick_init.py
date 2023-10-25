@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 
-from src.constants import *
+from src.utility.constants import *
 from src.utility.personal import *
 from src.utility.storage import *
 from src.utility.structure import *

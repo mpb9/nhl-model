@@ -1,5 +1,5 @@
 import pandas as pd
-from ..constants import *
+from .constants import *
 
 # Purpose: Common DataFrame Structural Operations
 

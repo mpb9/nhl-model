@@ -3,7 +3,7 @@ import pandas as pd
 from src.utility.storage import *
 from src.utility.structure import *
 from src.utility.personal import *
-from src.constants import *
+from src.utility.constants import *
 
 # Purpose: ROLLING AVERAGES FOR EACH TEAM OVER SPAN
 
@@ -16,7 +16,7 @@ def rolling_avgs(
     num_games,
     include_null_next=True,
     suffix=False,
-    add_objs=["season", "game_number", "is_home", "iceTime"],
+    add_objs=["season", "game_number", "is_home", "iceTime", "rest"],
 ):
     if include_null_next:
         df["next_game_id"].fillna("NA", inplace=True)
@@ -42,7 +42,9 @@ def team_avg_helper(group, obj_cols, data_cols, num_games):
 
 
 def season_avgs(
-    df, suffix=False, add_objs=["season", "game_number", "is_home", "iceTime"]
+    df,
+    suffix=False,
+    add_objs=["season", "game_number", "is_home", "iceTime", "rest"],
 ):
     df_SZN = pd.DataFrame()
 
