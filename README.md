@@ -1,6 +1,6 @@
 # NHL Model
 
-## _Personalized Complex Data_
+## Personalized Complex Data
 
 ### Power Ranks
 _Power Ranks return values for each team at a given date_
