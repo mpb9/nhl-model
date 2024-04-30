@@ -1,0 +1,16 @@
+CREATE TABLE team_x_game_even AS
+create table bet_nhl.team_x_game_pk
+as select * from betting.team_x_game
+where situation = '4on5';
+
+create table bet_nhl.team_x_game_even
+as select * from betting.team_x_game
+where situation = '5on5';
+
+create table bet_nhl.team_x_game_pp
+as select * from betting.team_x_game
+where situation = '5on4';
+
+create table bet_nhl.team_x_game_other
+as select * from betting.team_x_game
+where situation = 'other';
