@@ -95,6 +95,7 @@ trajectory_quick(df_X, df_szn, recent_num, past_num, False)
 > _Virtual Environment_:
 ```console
 myenv\Scripts\activate
+(mac) myenv\bin\activate
 ```
 ```console
 deactivate
