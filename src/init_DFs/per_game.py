@@ -33,7 +33,7 @@ class PerGameInit:
         df["win"] = df["win"].astype(int)
         df = add_game_number(df)
         df = add_rest(df)
-        return pretty_df(df)
+        return tidy_up(df)
 
     def next_game_ids_HA(self, df):
         df = self.orderby_id(df)

@@ -92,8 +92,8 @@ def merge_opp_data(df, common_cols, team_x, team_y, on_col):
     return organize(df)
 
 
-# info: Formats DF in my pretty format
-def pretty_df(df):
+# info: Formats DF in my tidy format
+def tidy_up(df):
     df = reorder_col(df.copy(), "game_id", 0)
     df = reorder_col(df.copy(), "team", 1)
     df = reorder_col(df.copy(), "opp_team", 2)

@@ -132,7 +132,7 @@ def quick_init__rolling_season(
     results = []
     for season in season_arr:
         for situation in situation_arr:
-            if season == "all":
+            if season == "":
                 df = primary_csv()
             else:
                 df = pd.read_csv(
@@ -148,7 +148,7 @@ def quick_init__rolling_season(
                     situation,
                     name="ROLLING_SEASON",
                     subfol="ROLLING",
-                    pretty=True,
+                    tidy=True,
                 )
 
     return results

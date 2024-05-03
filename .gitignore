@@ -1,7 +1,16 @@
-/myenv
+# CSV Files don't know if want to include them or not
+databases/BY_TEAM/TRAJECTORY
+databases/BY_TEAM/ROLLING
+
+# VS Code
 /.vscode
-/.ipynb_checkpoints
+
+# Python virtual environment
+/myenv
 /.venv
+
+# Jupyter Notebook
+/.ipynb_checkpoints
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

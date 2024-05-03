@@ -92,15 +92,19 @@ trajectory_quick(df_X, df_szn, recent_num, past_num, False)
 ```
 
 ## _Command Line_
-> _Virtual Environment_:
-```console
-myenv\Scripts\activate
-(mac) myenv\bin\activate
+> _Set up app's Virtual Python Environment_:
+```
+project-root % pip3 install virtualenv
+project-root % virtualenv myenv -p python3
+```
+> _Activate/deactivate Virtual Environment_:
+```
+project-root % myenv\bin\activate
 ```
 ```console
-deactivate
+project-root % deactivate
 ```
-> _Jupyter Notebook_:
+> _Jupyter Notebook_ (virtual env must be active)
 ```console
-jupyter notebook
+project-root % jupyter notebook
 ```

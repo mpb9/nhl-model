@@ -44,9 +44,9 @@ class NHLModel:
 
     def prepare(self):
         # Add Target
-        target_data = retrieve_csv("all", self.sit, "target", "")
+        target_data = retrieve_csv("", self.sit, "target", "")
         self.df["target"] = target_data[self.target].copy()
-        if self.szn != "all":
+        if self.szn != "":
             self.df["target"] = target_data[target_data.season == self.szn][
                 self.target
             ].copy()

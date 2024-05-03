@@ -12,7 +12,7 @@ from src.utility.constants import *
 def add_model_target(df, target_name, szn, sit):
     df = df.dropna(subset=["next_game_id"]).copy()
 
-    target_data = retrieve_csv("all", sit, "target", "")
+    target_data = retrieve_csv("", sit, "target", "")
     target_data = target_data.loc[target_data["season"] == szn][target_name].copy()
     target = target_data[target_name]
     return
@@ -26,10 +26,10 @@ def save_target(df, sit, target_name):
     )
     df = rename_col(df, "target", target_name)
 
-    target_df = retrieve_csv("all", sit, "target", "")
+    target_df = retrieve_csv("", sit, "target", "")
     target_df = pd.merge(target_df, df, on=["target_game_id", "team"])
 
-    export_csv(target_df, "all", sit, name="target", subfol="", pretty=False)
+    export_csv(target_df, "", sit, name="target", subfol="", tidy=False)
     return
 
 
