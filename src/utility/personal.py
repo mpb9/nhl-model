@@ -3,8 +3,8 @@ import re
 import pandas as pd
 import numpy as np
 
-from .structure import *
-from .constants import *
+from src.utility.structure import organize, reorder_col, shift_col
+from src.utility.constants import NHL_TEAMS
 
 # Purpose: Common Operations Pertaining Particularly to My Bizarre Needs & Desires
 
@@ -147,7 +147,7 @@ def format_odds(df, odd_col, odd_type):
         return df.copy()
     elif odd_type == "fractional":
         df[odd_col] = df[odd_col].apply(
-            lambda x: (1 / ((x.split("/")[0] / x.split("/")[1])) + 1)
+            lambda x: (1 / (x.split("/")[0] / x.split("/")[1]) + 1)
         )
         return df.copy()
     return df.copy()

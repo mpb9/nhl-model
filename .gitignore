@@ -2,6 +2,12 @@
 databases/BY_TEAM/TRAJECTORY
 databases/BY_TEAM/ROLLING
 
+# Environment variables
+.env
+
+#Snowflake
+*.session.sql
+
 # VS Code
 /.vscode
 
