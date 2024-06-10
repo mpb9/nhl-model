@@ -108,3 +108,8 @@ project-root % deactivate
 ```console
 project-root % jupyter notebook
 ```
+> _Run as API using Flask_ (virtual env must be active)
+* Refer to _Basic Python Flask_ project for further details: [GitHub (mpb9/python-flask-basic)](https://github.com/mpb9/python-flask-basic)
+```console
+project-root % python3 -m flask --app api_config run --port 8080 --debug
+```

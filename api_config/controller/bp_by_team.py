@@ -2,7 +2,7 @@ from flask import Blueprint
 from pandas import DataFrame, to_numeric
 
 from src.get_data.query_builder import query_builder
-from src.http.response_builder import response_builder
+from api_config.view.response_builder import response_builder
 from src.get_data.select_from_db import get_db_query
 
 
