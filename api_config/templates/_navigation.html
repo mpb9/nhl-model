@@ -1,6 +1,18 @@
 <nav>
   <ul>
-    <li><a href="{{ url_for('pages.home') }}">Home</a></li>
-    <li><a href="{{ url_for('pages.menu') }}">Menu</a></li>
+    <li>
+      <button><a href="{{ url_for('pages.home') }}">Home</a></button>
+    </li>
+    <li>
+      <button><a href="{{ url_for('pages.toc') }}">Table of Contents</a></button>
+    </li>
+    <li>
+      <button><a href="{{ url_for('pages.glossary') }}">Glossary</a></button>
+    </li>
+    <li>
+      <button>
+        <a href="https://dump-n-chase.com/" target="_blank">dump-n-chase.com</a>
+      </button>
+    </li>
   </ul>
 </nav>

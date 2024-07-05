@@ -1,0 +1,62 @@
+/* MARK: Text Shadow 
+*/
+.text-shadow-blue {
+  text-shadow: 1px 0em 0.1em var(--blue-accent);
+}
+.text-shadow-red {
+  text-shadow: 1px 0em 0.1em var(--red-accent);
+}
+.text-shadow-green {
+  text-shadow: 1px 0em 0.1em var(--green-accent);
+}
+.text-shadow-yellow {
+  text-shadow: 1px 0em 0.1em var(--yellow-accent);
+}
+.text-shadow-purple {
+  text-shadow: 1px 0em 0.1em var(--purple-accent);
+}
+.text-shadow-orange {
+  text-shadow: 1px 0em 0.1em var(--orange-accent);
+}
+
+/* MARK: Box Shadow 
+*/
+.box-shadow-blue {
+  box-shadow: 0em 0em 0.1em var(--blue-accent);
+}
+.box-shadow-red {
+  box-shadow: 0em 0em 0.1em var(--red-accent);
+}
+.box-shadow-green {
+  box-shadow: 0em 0em 0.1em var(--green-accent);
+}
+.box-shadow-yellow {
+  box-shadow: 0em 0em 0.1em var(--yellow-accent);
+}
+.box-shadow-purple {
+  box-shadow: 0em 0em 0.1em var(--purple-accent);
+}
+.box-shadow-orange {
+  box-shadow: 0em 0em 0.1em var(--orange-accent);
+}
+
+/* MARK: Button Shadow 
+*/
+.button-shadow-blue {
+  box-shadow: 0em 0em 0.1em var(--blue-accent);
+}
+.button-shadow-red {
+  box-shadow: 0em 0em 0.1em var(--red-accent);
+}
+.button-shadow-green {
+  box-shadow: 0em 0em 0.1em var(--green-accent);
+}
+.button-shadow-yellow {
+  box-shadow: 0em 0em 0.1em var(--yellow-accent);
+}
+.button-shadow-purple {
+  box-shadow: 0em 0em 0.1em var(--purple-accent);
+}
+.button-shadow-orange {
+  box-shadow: 0em 0em 0.1em var(--orange-accent);
+}

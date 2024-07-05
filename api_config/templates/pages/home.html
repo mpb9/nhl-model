@@ -1,5 +1,6 @@
 {% extends 'base.html' %} {% block header %}
 <h2>{% block title %}Home{% endblock title %}</h2>
 {% endblock header %} {% block content %}
-<p>Navigate to API Endpoints using the <a href="{{ url_for('pages.menu') }}">Menu page</a>.</p>
+<p>Get info about NHL Teams, seasons, and more with the <a href="{{ url_for('pages.glossary') }}">Glossary</a>.</p>
+<p>Navigate to API Endpoints using the <a href="{{ url_for('pages.toc') }}">Table of Contents</a>.</p>
 {% endblock content %}

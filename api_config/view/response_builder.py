@@ -1,10 +1,10 @@
 import os
 from pandas import DataFrame
 
-API_ENVIRONMENT = os.getenv("ENVIRONMENT")
+API_ENVIRONMENT: str | None = os.getenv(key="ENVIRONMENT")
 
 
-# MARK: Response Builder - Final
+# MARK: Response Builder
 def response_builder(df: DataFrame | None = None, query: str = "") -> dict:
     """_summary_: This function builds a response dictionary for an API endpoint. It takes in a type, data, and status code and returns a dictionary."""
     if API_ENVIRONMENT != "PROD":  # DEV or TEST

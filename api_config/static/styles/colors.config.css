@@ -1,0 +1,251 @@
+/* MARK: RBGAs 
+*/
+:root {
+  --primary: #0074d9;
+
+  --secondary: rgb(65, 68, 69);
+
+  --dark: #1f1f1f;
+  --light: #f4f4f4;
+
+  --blue: rgb(18, 241, 214);
+  --blue-accent: rgb(101, 243, 226);
+  --blue-transparent: rgba(18, 241, 214, 0.2);
+  --blue-semi-trans: rgba(18, 241, 214, 0.5);
+
+  --red: rgb(236, 51, 88);
+  --red-accent: rgb(207, 130, 144);
+  --red-transparent: rgba(225, 76, 106, 0.2);
+  --red-semi-trans: rgba(225, 76, 106, 0.5);
+
+  --orange: rgb(227, 163, 59);
+  --orange-accent: rgb(221, 202, 123);
+  --orange-transparent: rgba(180, 139, 78, 0.2);
+  --orange-semi-trans: rgba(180, 139, 78, 0.5);
+
+  --green: rgb(64, 209, 125);
+  --green-accent: rgb(131, 220, 168);
+  --green-transparent: rgba(85, 178, 124, 0.2);
+  --green-semi-trans: rgba(85, 178, 124, 0.5);
+
+  --yellow: rgb(241, 196, 15);
+  --yellow-accent: rgb(244, 208, 63);
+  --yellow-transparent: rgba(241, 196, 15, 0.2);
+  --yellow-semi-trans: rgba(241, 196, 15, 0.5);
+
+  --purple: rgb(142, 80, 204);
+  --purple-accent: rgb(169, 126, 209);
+  --purple-transparent: rgba(142, 80, 204, 0.2);
+  --purple-semi-trans: rgba(142, 80, 204, 0.5);
+
+  --scroll-thumb: rgb(65, 68, 69);
+  --scroll-thumb-hover: rgb(89, 93, 94);
+}
+
+/* MARK: Solid Color Classes 
+*/
+.red {
+  color: var(--red);
+  border-color: var(--red);
+}
+.red-accent {
+  color: var(--red-accent);
+  border-color: var(--red-accent);
+}
+.red:hover,
+.red-accent:hover {
+  background-color: var(--red-transparent);
+}
+.red button:hover,
+.red-accent button:hover {
+  background-color: var(--red);
+}
+
+.blue {
+  color: var(--blue);
+  border-color: var(--blue);
+}
+.blue-accent {
+  color: var(--blue-accent);
+  border-color: var(--blue-accent);
+}
+.blue:hover,
+.blue-accent:hover {
+  background-color: var(--blue-transparent);
+}
+.blue button:hover,
+.blue-accent button:hover {
+  background-color: var(--blue-accent);
+}
+
+.orange {
+  color: var(--orange);
+  border-color: var(--orange);
+}
+.orange-accent {
+  color: var(--orange-accent);
+  border-color: var(--orange-accent);
+}
+.orange:hover,
+.orange-accent:hover {
+  background-color: var(--orange-transparent);
+}
+.orange button:hover,
+.orange-accent button:hover {
+  background-color: var(--orange);
+}
+
+.green {
+  color: var(--green);
+  border-color: var(--green);
+}
+.green-accent {
+  color: var(--green-accent);
+  border-color: var(--green-accent);
+}
+.green:hover,
+.green-accent:hover {
+  background-color: var(--green-transparent);
+}
+.green button:hover,
+.green-accent button:hover {
+  background-color: var(--green);
+}
+
+.yellow {
+  color: var(--yellow);
+  border-color: var(--yellow);
+}
+.yellow-accent {
+  color: var(--yellow-accent);
+  border-color: var(--yellow-accent);
+}
+.yellow:hover,
+.yellow-accent:hover {
+  background-color: var(--yellow-transparent);
+}
+.yellow button:hover,
+.yellow-accent button:hover {
+  background-color: var(--yellow-accent);
+}
+
+.purple {
+  color: var(--purple);
+  border-color: var(--purple);
+}
+.purple-accent {
+  color: var(--purple-accent);
+  border-color: var(--purple-accent);
+}
+.purple:hover,
+.purple-accent:hover {
+  background-color: var(--purple-transparent);
+}
+.purple button:hover,
+.purple-accent button:hover {
+  background-color: var(--purple-accent);
+}
+
+/* MARK: Gradient Classes 
+*/
+/* red x __ */
+.bg-rb {
+  background: linear-gradient(45deg, var(--red-semi-trans), var(--blue-semi-trans));
+}
+.bg-rg {
+  background: linear-gradient(45deg, var(--red-semi-trans), var(--green-semi-trans));
+}
+.bg-ro {
+  background: linear-gradient(45deg, var(--red-semi-trans), var(--orange-semi-trans));
+}
+.bg-ry {
+  background: linear-gradient(45deg, var(--red-semi-trans), var(--yellow-semi-trans));
+}
+.bg-rp {
+  background: linear-gradient(45deg, var(--red-semi-trans), var(--purple-semi-trans));
+}
+
+/* blue x __ */
+.bg-br {
+  background: linear-gradient(45deg, var(--blue-semi-trans), var(--red-semi-trans));
+}
+.bg-bg {
+  background: linear-gradient(45deg, var(--blue-semi-trans), var(--green-semi-trans));
+}
+.bg-bo {
+  background: linear-gradient(45deg, var(--blue-semi-trans), var(--orange-semi-trans));
+}
+.bg-by {
+  background: linear-gradient(45deg, var(--blue-semi-trans), var(--yellow-semi-trans));
+}
+.bg-bp {
+  background: linear-gradient(45deg, var(--blue-semi-trans), var(--purple-semi-trans));
+}
+
+/* green x __ */
+.bg-gr {
+  background: linear-gradient(45deg, var(--green-semi-trans), var(--red-semi-trans));
+}
+.bg-go {
+  background: linear-gradient(45deg, var(--green-semi-trans), var(--orange-semi-trans));
+}
+.bg-gy {
+  background: linear-gradient(45deg, var(--green-semi-trans), var(--yellow-semi-trans));
+}
+.bg-gp {
+  background: linear-gradient(45deg, var(--green-semi-trans), var(--purple-semi-trans));
+}
+.bg-gb {
+  background: linear-gradient(45deg, var(--green-semi-trans), var(--blue-semi-trans));
+}
+
+/* yellow x __ */
+.bg-yp {
+  background: linear-gradient(45deg, var(--yellow-semi-trans), var(--purple-semi-trans));
+}
+.bg-yr {
+  background: linear-gradient(45deg, var(--yellow-semi-trans), var(--red-semi-trans));
+}
+.bg-yb {
+  background: linear-gradient(45deg, var(--yellow-semi-trans), var(--blue-semi-trans));
+}
+.bg-yg {
+  background: linear-gradient(45deg, var(--yellow-semi-trans), var(--green-semi-trans));
+}
+.bg-yo {
+  background: linear-gradient(45deg, var(--yellow-semi-trans), var(--orange-semi-trans));
+}
+
+/* orange x __ */
+.bg-or {
+  background: linear-gradient(45deg, var(--orange-semi-trans), var(--red-semi-trans));
+}
+.bg-ob {
+  background: linear-gradient(45deg, var(--orange-semi-trans), var(--blue-semi-trans));
+}
+.bg-og {
+  background: linear-gradient(45deg, var(--orange-semi-trans), var(--green-semi-trans));
+}
+.bg-oy {
+  background: linear-gradient(45deg, var(--orange-semi-trans), var(--yellow-semi-trans));
+}
+.bg-op {
+  background: linear-gradient(45deg, var(--orange-semi-trans), var(--purple-semi-trans));
+}
+
+/* purple x __ */
+.bg-pr {
+  background: linear-gradient(45deg, var(--purple-semi-trans), var(--red-semi-trans));
+}
+.bg-pg {
+  background: linear-gradient(45deg, var(--purple-semi-trans), var(--green-semi-trans));
+}
+.bg-pb {
+  background: linear-gradient(45deg, var(--purple-semi-trans), var(--blue-semi-trans));
+}
+.bg-po {
+  background: linear-gradient(45deg, var(--purple-semi-trans), var(--orange-semi-trans));
+}
+.bg-py {
+  background: linear-gradient(45deg, var(--purple-semi-trans), var(--yellow-semi-trans));
+}

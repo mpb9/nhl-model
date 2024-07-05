@@ -6,7 +6,12 @@ def query_builder(
     table_name: str, vars: list[str], conds: list[str], vals: list[str | int | float]
 ) -> str:
     """_summary_: This function builds a query string for querying a database. It takes in a table name, a list of variables, a list of conditionals, and a list of values. It returns a query string."""
-    query: str = f"SELECT * FROM {table_name} WHERE "
+    query: str = f"SELECT * FROM {table_name}"
+
+    if len(vars) == 0:
+        return query + ";"
+    else:
+        query += " WHERE "
 
     for i, var in enumerate(iterable=vars):
         for cond in conds:

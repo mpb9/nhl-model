@@ -1,0 +1,23 @@
+/* Works on Chrome, Edge, and Safari */
+/* Width */
+*::-webkit-scrollbar {
+  width: 19px;
+}
+
+/* Track */
+*::-webkit-scrollbar-track {
+  background: var(--dark);
+}
+
+/* Handle */
+*::-webkit-scrollbar-thumb {
+  background-color: var(--scroll-thumb);
+  border-radius: 1vh;
+  border: 0px solid var(--dark);
+  border-right-width: 1px;
+}
+
+/* Handle on hover */
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scroll-thumb-hover);
+}

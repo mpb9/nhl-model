@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>DUMP+CHASE Public API - {% block title %}{% endblock title %}</title>
+    <title>Dump+Chase API - {% block title %}{% endblock title %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}" />
   </head>
   <body>
-    <h1>NHL Model API (DUMP+CHASE)</h1>
     {% include("_navigation.html") %}
     <section>
       <header>{% block header %}{% endblock header %}</header>
@@ -15,5 +15,9 @@
         {% endblock content %}
       </main>
     </section>
+    <h1>
+      Public API User Interface -
+      <a href="https://dump-n-chase.com/" target="_blank"> DUMP+CHASE</a>
+    </h1>
   </body>
 </html>

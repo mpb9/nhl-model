@@ -1,0 +1,40 @@
+/* MARK: <button> & <a>
+*/
+button,
+a,
+a:visited {
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.1s;
+}
+button:hover,
+a:hover {
+  color: var(--orange-accent);
+}
+
+/* MARK: <button> 
+*/
+button {
+  background-color: var(--orange);
+  color: var(--dark);
+  padding: 0.25em 1em;
+  border-radius: 0.2em;
+  border-color: var(--orange-accent);
+}
+button:hover {
+  background-color: var(--orange-accent);
+}
+
+/* MARK: <a> 
+*/
+a {
+  color: var(--orange);
+}
+button > a {
+  color: var(--dark) !important;
+}
+a:hover {
+  background-color: transparent !important;
+}
