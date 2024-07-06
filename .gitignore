@@ -7,6 +7,7 @@ databases/BY_TEAM/ROLLING
 
 #Snowflake
 *.session.sql
+validate.py
 
 # VS Code
 /.vscode

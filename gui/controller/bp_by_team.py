@@ -2,9 +2,8 @@ from flask import Blueprint
 from pandas import DataFrame, to_numeric
 
 from src.get_data.query_builder import query_builder
-from api_config.view.response_builder import response_builder
+from gui.view.response_builder import response_builder
 from src.get_data.select_from_db import get_db_query
-
 
 # MARK: Blueprint: /5on5/team
 bp = Blueprint(name="by_team", import_name=__name__)
@@ -19,7 +18,7 @@ def get_5on5_by_team(team: str) -> dict:
     )
     df: DataFrame = get_db_query(query=query)
 
-    resp: dict = response_builder(df=df, query=query)
+    resp: dict = response_builder(df=df)
     return resp
 
 
@@ -34,7 +33,7 @@ def get_5on5_by_season(season: str) -> dict:
     )
     df: DataFrame = get_db_query(query=query)
 
-    resp: dict = response_builder(df=df, query=query)
+    resp: dict = response_builder(df=df)
     return resp
 
 
@@ -51,5 +50,5 @@ def get_5on5_by_team_and_season(team: str, season: str) -> dict:
     )
     df: DataFrame = get_db_query(query=query)
 
-    resp: dict = response_builder(df=df, query=query)
+    resp: dict = response_builder(df=df)
     return resp

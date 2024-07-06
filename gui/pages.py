@@ -1,24 +1,26 @@
 from flask import Blueprint, render_template
-from api_config.utils.paths.web_path_config import WebPage, WebPageHtml
-from api_config.utils.paths.api_path_config import Glossary
+from gui.utils.path_config import Interface, GuiEndpoint, GuiFilePath
+
+# from api.utils.paths.api_path_config import Glossary
 
 bp = Blueprint(name="pages", import_name=__name__)
+bp.url_prefix = Interface.GUI.value
 
 
 # MARK: Web Page Pages
-@bp.route(rule=WebPage.HOME.value)
+@bp.route(rule=GuiEndpoint.HOME.value)
 def home() -> str:
-    return render_template(template_name_or_list=WebPageHtml.HOME.value)
+    return render_template(template_name_or_list=GuiFilePath.HOME.value)
 
 
-@bp.route(rule=WebPage.TOC.value)
-def toc() -> str:
-    return render_template(template_name_or_list=WebPageHtml.TOC.value)
+@bp.route(rule=GuiEndpoint.CONTENTS.value)
+def contents() -> str:
+    return render_template(template_name_or_list=GuiFilePath.CONTENTS.value)
 
 
-@bp.route(rule=WebPage.GLOSSARY.value)
+@bp.route(rule=GuiEndpoint.GLOSSARY.value)
 def glossary() -> str:
-    return render_template(template_name_or_list=WebPageHtml.GLOSSARY.value)
+    return render_template(template_name_or_list=GuiFilePath.GLOSSARY.value)
 
 
 # MARK: API Paths

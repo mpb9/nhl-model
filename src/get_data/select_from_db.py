@@ -17,6 +17,8 @@ def get_db(table_name: str) -> pd.DataFrame:
     )
 
 
+# ! UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. 
+# ! Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
 def get_db_query(query: str) -> pd.DataFrame:
     """_summary_: This function queries the database and returns a DataFrame."""
     return pd.read_sql(sql=query, con=get_conn())
