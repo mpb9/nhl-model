@@ -1,11 +1,7 @@
 import pandas as pd
-
 from datetime import datetime, timedelta
+from utility.storage import get_NHL_teams
 
-from src.utility.storage import *
-from src.utility.structure import *
-from src.utility.personal import *
-from src.utility.constants import *
 
 # Purpose: RUNNING POWER RANKS FOR EACH TEAM
 # info: Each Rank includes all data PRIOR to game_date (might change later to be inclusive)

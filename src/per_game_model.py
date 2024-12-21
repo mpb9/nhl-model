@@ -1,11 +1,5 @@
 import pandas as pd
-
-from sklearn.model_selection import TimeSeriesSplit
-from sklearn.feature_selection import SequentialFeatureSelector
-from sklearn.linear_model import RidgeClassifier
-from sklearn.preprocessing import MinMaxScaler
-from sklearn.metrics import accuracy_score
-from src.utility.constants import *
+from src.utility.constants import IGNORED_COLS
 from .init_DFs.per_game import PerGameInit
 
 

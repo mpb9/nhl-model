@@ -1,6 +1,4 @@
 import pandas as pd
-
-from src.utility.personal import tidy_up, drop_nulls
 from utility.constants import DB_PATH
 
 

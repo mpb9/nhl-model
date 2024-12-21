@@ -1,25 +1,23 @@
 import sys
-import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-from sklearn.linear_model import LinearRegression
+from utility.structure import merge_df, orderby_id, rename_col
 
 sys.path.append("/get_data")
-from .get_data.nhl_data import NHLData
-from .get_data.utility_data import UtilityData
+# ! from .get_data.nhl_data import NHLData
+# ! from .get_data.utility_data import UtilityData
 
-from src.utility.storage import *
-from src.utility.structure import *
-from src.utility.personal import *
 
 # Purpose: INITIALIZE PER GAME DATASETS
 # ! work in progress... a lot might be out of date
 
 
 class PerGameData:
-    def __init__(self):
-        self.nhl_data = NHLData()
-        self.utility_data = UtilityData()
+    # ! dont __init__ because NHLData and UtilityData classes are undefined
+    # UtilityData not used in this file
+    # classes still exist in src.get_data.old folder
+    """def __init__(self):
+    self.nhl_data = NHLData()
+    self.utility_data = UtilityData()"""
 
     def next_game_ids_DF(self, df):
         df = orderby_id(df)
@@ -149,6 +147,7 @@ class PerGameData:
             df.insert(col_movin[1], col_movin[0], column_to_move)
         return df
 
+    # ! only method that uses NHLData class
     def season_per_game_data(self, situation, season):
         season_condition = {"header": "season", "conditional": "=", "value": season}
         games = self.nhl_data.conditional_data("games", [season_condition])

@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
-
-from src.utility.personal import *
+from src.utility.personal import add_game_number, add_rest, tidy_up
 
 
 class PerGameInit:

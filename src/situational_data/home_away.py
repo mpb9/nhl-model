@@ -1,11 +1,11 @@
 import pandas as pd
-
-from src.utility.storage import *
-from src.utility.structure import *
-from src.utility.personal import *
-from src.utility.constants import *
-
-from src.relative_data.power_rank import *
+import datetime
+from src.relative_data.power_rank import (
+    matchup_odds_matrix_HA,
+    matrix_2_power_rank,
+    power_rank__implied,
+    power_rank__implied_matchup,
+)
 
 
 # Purpose: RUNNING HOME/AWAY ADVANTAGE FOR EACH TEAM
@@ -19,9 +19,9 @@ def home_away(df, pr_type="imp", num_days=500, HA=""):
         df_szn = df[df.season == season].copy()
 
         for game_date in df_szn["game_date"].unique():
-            initial_date = datetime.strptime(game_date, "%Y-%m-%d") - timedelta(
-                days=num_days
-            )
+            initial_date = datetime.strptime(
+                game_date, "%Y-%m-%d"
+            ) - datetime.timedelta(days=num_days)
             initial_date = initial_date.strftime("%Y-%m-%d")
 
             if pr_type == "adj":

@@ -1,11 +1,10 @@
+import datetime
 import pandas as pd
-
-from src.utility.storage import *
-from src.utility.structure import *
-from src.utility.personal import *
-from src.utility.constants import *
-
-from src.relative_data.power_rank import *
+from src.relative_data.power_rank import (
+    power_rank__implied,
+    power_rank__implied_matchup,
+    matchup_odds_matrix,
+)
 
 # Purpose: RUNNING STRENGTH OF SCHEDULES FOR EACH TEAM
 # info: Each SOS includes all data PRIOR to game_date (might change later to be inclusive)
@@ -18,9 +17,9 @@ def sos(df, pr_type="imp", num_days=500, HA=""):
         df_szn = df[df.season == season].copy()
 
         for game_date in df_szn["game_date"].unique():
-            initial_date = datetime.strptime(game_date, "%Y-%m-%d") - timedelta(
-                days=num_days
-            )
+            initial_date = datetime.strptime(
+                game_date, "%Y-%m-%d"
+            ) - datetime.timedelta(days=num_days)
             initial_date = initial_date.strftime("%Y-%m-%d")
 
             if pr_type == "imp":

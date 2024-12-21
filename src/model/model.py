@@ -1,9 +1,8 @@
 import pandas as pd
-
-from src.utility.storage import *
-from src.utility.structure import *
-from src.utility.personal import *
-from src.utility.constants import *
+from src.utility.storage import load_csv
+from utility.personal import add_known_col
+from utility.structure import organize
+from utility.constants import CSV_DB_PATH_OLD
 
 # Purpose: Initialize and Update a Model Iteration
 
@@ -44,7 +43,7 @@ class NHLModel:
 
     def prepare(self):
         # Add Target
-        target_data = retrieve_csv("", self.sit, "target", "")
+        target_data = load_csv("", self.sit, "target", "")
         self.df["target"] = target_data[self.target].copy()
         if self.szn != "":
             self.df["target"] = target_data[target_data.season == self.szn][

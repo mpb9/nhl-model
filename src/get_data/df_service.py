@@ -1,6 +1,6 @@
+import pandas as pd
 from src.utility.constants import CONDITIONALS
 from src.get_data.df_repository import get_df
-import pandas as pd
 
 
 # MARK: Builds SnowSQL query

@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 
 
 def corr_coef(data, x, target, desc=""):

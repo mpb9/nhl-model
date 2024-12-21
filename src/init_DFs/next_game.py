@@ -1,4 +1,4 @@
-from ..utility import *
+from src.utility.structure import orderby_id
 
 
 class NextGameInit:

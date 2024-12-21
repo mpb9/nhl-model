@@ -1,9 +1,5 @@
 import pandas as pd
-
-from src.utility.storage import *
-from src.utility.structure import *
-from src.utility.personal import *
-from src.utility.constants import *
+from utility.structure import concat_df
 
 
 # Purpose: ROLLING AVERAGES FOR EACH TEAM OVER SPAN

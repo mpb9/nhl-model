@@ -1,10 +1,8 @@
-import re
 import pandas as pd
-
-from src.utility.storage import *
-from src.utility.structure import *
-from src.utility.personal import *
-from src.utility.constants import *
+from src.utility.storage import load_csv, export_csv_basic
+from src.utility.structure import rename_col
+from src.utility.personal import organize
+from src.utility.constants import IGNORED_COLS
 
 # Purpose: ADD TARGET TO MODEL
 

@@ -1,9 +1,5 @@
 import pandas as pd
-
-from src.utility.storage import *
-from src.utility.structure import *
-from src.utility.personal import *
-from src.utility.constants import *
+from src.utility.structure import organize, rename_col
 
 # Purpose: ROLLING AVERAGES FOR EACH TEAM OVER SPAN
 

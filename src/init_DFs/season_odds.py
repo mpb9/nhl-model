@@ -1,10 +1,7 @@
-import numpy as np
 import pandas as pd
-
-from src.utility.structure import *
-from src.utility.storage import *
-from src.utility.personal import *
-from src.utility.constants import *
+from src.utility.structure import orderby_mult, rename_col, reorder_col
+from src.utility.personal import format_team_name, format_odds, gp_2019
+from src.utility.constants import CSV_DB_PATH_OLD
 
 # Purpose: Add Season Odds Data to the DataFrame (from www.sportsoddshistory.com)
 # ! ADD STANLEY CUP ODDS... SPECIFIED BY DATE (1-5 DAYS DURING EACH SEASON)
