@@ -1,6 +1,6 @@
 import pandas as pd
 from datetime import datetime, timedelta
-from utility.storage import get_NHL_teams
+from src.utility.storage import get_NHL_teams
 
 
 # Purpose: RUNNING POWER RANKS FOR EACH TEAM

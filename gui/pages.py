@@ -1,6 +1,6 @@
 from flask import Blueprint, redirect, render_template
 from pandas import DataFrame
-from gui.utils.format_response import response_builder, table_builder
+from gui.utils.format_response import table_builder
 from gui.utils.path_config import paths
 from src.get_data.df_service import get
 

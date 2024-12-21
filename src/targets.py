@@ -1,6 +1,6 @@
 import pandas as pd
-from utility.constants import IGNORED_COLS
-from utility.structure import orderby_id
+from src.utility.constants import IGNORED_COLS
+from src.utility.structure import orderby_id
 
 
 # Purpose: TARGETS FOR MODELING

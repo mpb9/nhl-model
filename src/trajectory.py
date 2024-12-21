@@ -1,10 +1,10 @@
 import numpy as np
 import pandas as pd
 from src.avgs import rolling_avgs, season_avgs
-from utility.math import linear_coef, linear_coefs_grouped
-from utility.personal import drop_nulls, drop_on_game_number
-from utility.structure import orderby_id, orderby_mult, organize, rename_col
-from utility.constants import CSV_DB_PATH_OLD
+from src.utility.math import linear_coef, linear_coefs_grouped
+from src.utility.personal import drop_nulls, drop_on_game_number
+from src.utility.structure import orderby_id, orderby_mult, organize, rename_col
+from src.utility.constants import CSV_DB_PATH_OLD
 
 # Purpose: DIFFERENCE BETWEEN (RECENT DATA) & (LARGER SAMPLE)
 # ! need to make sure each new row INCLUDES that row's game_id's info
