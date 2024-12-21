@@ -2,44 +2,43 @@
 */
 :root {
   --primary: #0074d9;
-
-  --secondary: rgb(65, 68, 69);
+  --secondary: #414445;
 
   --dark: #1f1f1f;
-  --light: #f4f4f4;
+  --light: #f2f2f2;
 
   --blue: rgb(18, 241, 214);
   --blue-accent: rgb(101, 243, 226);
   --blue-transparent: rgba(18, 241, 214, 0.2);
   --blue-semi-trans: rgba(18, 241, 214, 0.5);
 
-  --red: rgb(236, 51, 88);
-  --red-accent: rgb(207, 130, 144);
-  --red-transparent: rgba(225, 76, 106, 0.2);
-  --red-semi-trans: rgba(225, 76, 106, 0.5);
+  --red: #ec3358;
+  --red-accent: #cf8290;
+  --red-transparent: #e14c6a33;
+  --red-semi-trans: #e14c6a80;
 
-  --orange: rgb(227, 163, 59);
-  --orange-accent: rgb(221, 202, 123);
-  --orange-transparent: rgba(180, 139, 78, 0.2);
-  --orange-semi-trans: rgba(180, 139, 78, 0.5);
+  --orange: #e3a33b;
+  --orange-accent: #ddca7b;
+  --orange-transparent: #b48b4e33;
+  --orange-semi-trans: #b48b4e80;
 
-  --green: rgb(64, 209, 125);
-  --green-accent: rgb(131, 220, 168);
-  --green-transparent: rgba(85, 178, 124, 0.2);
-  --green-semi-trans: rgba(85, 178, 124, 0.5);
+  --green: #40d17d;
+  --green-accent: #83dca8;
+  --green-transparent: #55b27c33;
+  --green-semi-trans: #55b27c80;
 
-  --yellow: rgb(241, 196, 15);
-  --yellow-accent: rgb(244, 208, 63);
-  --yellow-transparent: rgba(241, 196, 15, 0.2);
-  --yellow-semi-trans: rgba(241, 196, 15, 0.5);
+  --yellow: #f1c40f;
+  --yellow-accent: #f4d03f;
+  --yellow-transparent: #f1c40f33;
+  --yellow-semi-trans: #f1c40f80;
 
-  --purple: rgb(142, 80, 204);
-  --purple-accent: rgb(169, 126, 209);
-  --purple-transparent: rgba(142, 80, 204, 0.2);
-  --purple-semi-trans: rgba(142, 80, 204, 0.5);
+  --purple: #8e50cc;
+  --purple-accent: #a97ed1;
+  --purple-transparent: #8e50cc33;
+  --purple-semi-trans: #8e50cc80;
 
-  --scroll-thumb: rgb(65, 68, 69);
-  --scroll-thumb-hover: rgb(89, 93, 94);
+  --scroll-thumb: #414445;
+  --scroll-thumb-hover: #595d5e;
 }
 
 /* MARK: Solid Color Classes 

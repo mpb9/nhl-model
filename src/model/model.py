@@ -123,7 +123,7 @@ class NHLModel:
 
     def add_points_odds(self):
         df_pts = pd.read_csv(
-            CSV_DB_PATH + "season_odds/point_total_odds.csv",
+            CSV_DB_PATH_OLD + "season_odds/point_total_odds.csv",
         )
         df_pts_TEMP = pd.DataFrame()
 
@@ -150,7 +150,7 @@ class NHLModel:
 
     def add_playoff_odds(self):
         df_po = pd.read_csv(
-            CSV_DB_PATH + "season_odds/playoff_odds.csv",
+            CSV_DB_PATH_OLD + "season_odds/playoff_odds.csv",
         )
         df_po_TEMP = pd.DataFrame()
 

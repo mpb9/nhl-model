@@ -1,9 +1,19 @@
 import pandas as pd
-from src.get_data.db_connect import get_conn
-    
-# ! pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. 
-# ! Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+import snowflake.connector as sc
+from src.get_data.db_config import ctx_params
+
+
 def get_df(query: str) -> pd.DataFrame:
     """_summary_: This function queries the database and returns a DataFrame."""
-    return pd.read_sql(sql=query, con=get_conn())
-     
+    res = None
+
+    ctx = sc.connect(**ctx_params)
+    cur = ctx.cursor()
+    try:
+        cur.execute(query)
+        res = cur.fetch_pandas_all()
+    finally:
+        cur.close()
+        ctx.close()
+
+    return res

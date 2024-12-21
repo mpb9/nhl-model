@@ -15,7 +15,7 @@ from src.utility.constants import *
 # final cols: team, pts_exp, pts_over_odds, pts_under_odds, pts_szn, pts_szn_over_exp, season
 def update_points_odds(year, export=False):
     df_szn = pd.read_csv(
-        CSV_DB_PATH + f"season_odds/point_total_odds_TEMP.csv",
+        CSV_DB_PATH_OLD + f"season_odds/point_total_odds_TEMP.csv",
     )
 
     df_szn = rename_col(df_szn, "Team", "team")
@@ -46,7 +46,7 @@ def update_points_odds(year, export=False):
     df = pd.concat(
         [
             pd.read_csv(
-                CSV_DB_PATH + "season_odds/point_total_odds.csv",
+                CSV_DB_PATH_OLD + "season_odds/point_total_odds.csv",
             ),
             df_szn,
         ],
@@ -65,7 +65,7 @@ def update_points_odds(year, export=False):
 
     if export:
         df.to_csv(
-            CSV_DB_PATH + "season_odds/point_total_odds.csv",
+            CSV_DB_PATH_OLD + "season_odds/point_total_odds.csv",
             header=True,
             index=False,
         )
@@ -77,7 +77,7 @@ def update_points_odds(year, export=False):
 # final cols: team, playoff_make_odds, playoff_miss_odds, playoff_made, season
 def update_playoff_odds(year, export=False):
     df_szn = pd.read_csv(
-        CSV_DB_PATH + f"season_odds/playoff_odds_TEMP.csv",
+        CSV_DB_PATH_OLD + f"season_odds/playoff_odds_TEMP.csv",
     )
 
     df_szn = rename_col(df_szn, "Team", "team")
@@ -101,7 +101,7 @@ def update_playoff_odds(year, export=False):
     df = pd.concat(
         [
             pd.read_csv(
-                CSV_DB_PATH + "season_odds/playoff_odds.csv",
+                CSV_DB_PATH_OLD + "season_odds/playoff_odds.csv",
             ),
             df_szn,
         ],
@@ -118,7 +118,7 @@ def update_playoff_odds(year, export=False):
 
     if export:
         df.to_csv(
-            CSV_DB_PATH + "season_odds/playoff_odds.csv",
+            CSV_DB_PATH_OLD + "season_odds/playoff_odds.csv",
             header=True,
             index=False,
         )

@@ -26,17 +26,17 @@ def quick_init__per_game(
     results = []
     for season in season_arr:
         for situation in situation_arr:
-            games = pd.read_csv(CSV_DB_PATH + f"{season}/games_{season}.csv")
+            games = pd.read_csv(CSV_DB_PATH_OLD + f"{season}/games_{season}.csv")
             team_SIT = pd.read_csv(
-                CSV_DB_PATH + f"{season}/team_x_game_{situation}_{season}.csv"
+                CSV_DB_PATH_OLD + f"{season}/team_x_game_{situation}_{season}.csv"
             )
-            odds = pd.read_csv(CSV_DB_PATH + f"{season}/odds_x_game_{season}.csv")
+            odds = pd.read_csv(CSV_DB_PATH_OLD + f"{season}/odds_x_game_{season}.csv")
 
             pg = pd.merge(pd.merge(team_SIT, games), odds)
 
             pg = initPG.init_per_game(pg)
             pg.to_csv(
-                CSV_TEMP_PATH + f"PER_GAME_{situation}_{season}.csv",
+                CSV_TEMP_PATH_OLD + f"PER_GAME_{situation}_{season}.csv",
                 header=True,
                 index=False,
             )
@@ -44,25 +44,28 @@ def quick_init__per_game(
             pg_copy = pg.copy()
             pg_teams = initPG.init_by_team(pg, pg_copy)
             pg_teams.to_csv(
-                CSV_TEMP_PATH + f"PER_GAME_BY_TEAM_{situation}_{season}.csv",
+                CSV_TEMP_PATH_OLD + f"PER_GAME_BY_TEAM_{situation}_{season}.csv",
                 header=True,
                 index=False,
             )
 
             if auto_export:
                 pg.to_csv(
-                    CSV_DB_PATH + f"{season}/PER_GAME_{situation}_{season}.csv",
+                    CSV_DB_PATH_OLD + f"{season}/PER_GAME_{situation}_{season}.csv",
                     header=True,
                     index=False,
                 )
-                os.remove(CSV_TEMP_PATH + f"PER_GAME_{situation}_{season}.csv")
+                os.remove(CSV_TEMP_PATH_OLD + f"PER_GAME_{situation}_{season}.csv")
 
                 pg_teams.to_csv(
-                    CSV_DB_PATH + f"{season}/PER_GAME_BY_TEAM_{situation}_{season}.csv",
+                    CSV_DB_PATH_OLD
+                    + f"{season}/PER_GAME_BY_TEAM_{situation}_{season}.csv",
                     header=True,
                     index=False,
                 )
-                os.remove(CSV_TEMP_PATH + f"PER_GAME_BY_TEAM_{situation}_{season}.csv")
+                os.remove(
+                    CSV_TEMP_PATH_OLD + f"PER_GAME_BY_TEAM_{situation}_{season}.csv"
+                )
     return results
 
 
@@ -84,7 +87,8 @@ def quick_init__rolling(
         for season in season_arr:
             for situation in situation_arr:
                 df = pd.read_csv(
-                    CSV_DB_PATH + f"{season}/PER_GAME_BY_TEAM_{situation}_{season}.csv"
+                    CSV_DB_PATH_OLD
+                    + f"{season}/PER_GAME_BY_TEAM_{situation}_{season}.csv"
                 )
 
                 if include_null_targets:
@@ -102,7 +106,7 @@ def quick_init__rolling(
                 )
 
                 rolling.essentials.to_csv(
-                    CSV_TEMP_PATH + f"ROLLING_{num_games}_{situation}_{season}.csv",
+                    CSV_TEMP_PATH_OLD + f"ROLLING_{num_games}_{situation}_{season}.csv",
                     header=True,
                     index=False,
                 )
@@ -111,13 +115,14 @@ def quick_init__rolling(
 
                 if auto_export:
                     rolling.essentials.to_csv(
-                        CSV_DB_PATH
+                        CSV_DB_PATH_OLD
                         + f"{season}/ROLLING_{num_games}_{situation}_{season}.csv",
                         header=True,
                         index=False,
                     )
                     os.remove(
-                        CSV_TEMP_PATH + f"ROLLING_{num_games}_{situation}_{season}.csv"
+                        CSV_TEMP_PATH_OLD
+                        + f"ROLLING_{num_games}_{situation}_{season}.csv"
                     )
     return results
 
@@ -133,16 +138,17 @@ def quick_init__rolling_season(
     for season in season_arr:
         for situation in situation_arr:
             if season == "":
-                df = primary_csv()
+                df = load_csv()
             else:
                 df = pd.read_csv(
-                    CSV_DB_PATH + f"{season}/PER_GAME_BY_TEAM_{situation}_{season}.csv"
+                    CSV_DB_PATH_OLD
+                    + f"{season}/PER_GAME_BY_TEAM_{situation}_{season}.csv"
                 )
 
             results.append(season_avgs(df, suffix, add_obj_cols))
 
             if auto_export:
-                export_csv(
+                export_csv_basic(
                     df,
                     season,
                     situation,

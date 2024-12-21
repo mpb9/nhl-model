@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}" />
   </head>
+
   <body>
     {% include("_navigation.html") %}
     <section>
@@ -15,7 +16,8 @@
         {% endblock content %}
       </main>
     </section>
-    <h1>
+
+    <h1 style="position: fixed">
       Public API User Interface -
       <a href="https://dump-n-chase.com/" target="_blank"> DUMP+CHASE</a>
     </h1>

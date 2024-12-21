@@ -1,8 +1,5 @@
-"""_summary_: This file contains the connection to the Snowflake database."""
-
 import os
-import snowflake.connector
-from snowflake.connector.cursor import SnowflakeCursor
+import snowflake.connector as sc
 
 # info: Snowflake connection
 PASSWORD = os.getenv("SNOWFLAKE_PASSWORD")
@@ -17,10 +14,24 @@ ROLE = os.getenv("SNOWFLAKE_ROLE")
 REGION = os.getenv("SNOWFLAKE_REGION")
 TABLE = os.getenv("SNOWFLAKE_TABLE")
 
+PRIVATE_KEY_FILE = os.getenv("SNOWFLAKE_PRIVATE_KEY_FILE")
+PRIVATE_KEY_FILE_PWD = os.getenv("SNOWFLAKE_PRIVATE_KEY_FILE_PWD")
 
+ctx_params = {
+    "account": ACCOUNT,
+    "user": USER,
+    "password": PASSWORD,
+    "warehouse": WAREHOUSE,
+    "database": DATABASE,
+    "schema": SCHEMA,
+    "private_key_file": PRIVATE_KEY_FILE,
+    "private_key_file_pwd": PRIVATE_KEY_FILE_PWD,
+}
+
+
+# https://docs.snowflake.com/en/developer-guide/python-connector/python-connector-api#module-snowflake-connector
 def get_conn():
-    """_summary_: This function connects to the Snowflake database."""
-    conn = snowflake.connector.connect(
+    conn = sc.connect(
         user=USER,
         password=PASSWORD,
         account=ACCOUNT,
@@ -29,9 +40,17 @@ def get_conn():
         schema=SCHEMA,
         table=TABLE,
     )
+    print(f"\nget_conn()\n{conn}\n")
     return conn
 
 
-def get_cursor(conn: snowflake.connector.connection.SnowflakeConnection):
-    """_summary_: This function gets a cursor for the Snowflake connection."""
-    return conn.cursor()
+def get_ctx():
+    ctx = sc.connect(**ctx_params)
+    print(f"\nget_ctx()\n{ctx}\n")
+    return ctx
+
+
+def get_cursor():
+    ctx = sc.connect(**ctx_params)
+    cs = ctx.cursor()
+    return cs

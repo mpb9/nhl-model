@@ -1,7 +1,7 @@
 import pandas as pd
 
 from .personal import drop_nulls, tidy_up
-from .constants import DB_PATH, CSV_DB_PATH, BY_TEAM_DB, UTILS_DB
+from .constants import DB_PATH, CSV_DB_PATH_OLD, BY_TEAM_DB, UTILS_DB
 
 # Purpose: Common Data Retrieval & Export Operations
 
@@ -39,7 +39,7 @@ def export_csv_test(df, szn, sit, name="", tidy=True):
     if tidy:
         df = tidy_up(df)
     df.to_csv(
-        CSV_DB_PATH
+        CSV_DB_PATH_OLD
         + f"test/{'' if len(name)<1 else f'{name}_'}{sit}{'' if szn == 'all' else f'_{szn}'}.csv",
         header=True,
         index=False,
@@ -56,7 +56,7 @@ def export_path_builder(szn, sit, name="", subfol=""):
 # MARK: Load CSVs
 def load_csv(szn, sit, name="", subfol=""):
     return pd.read_csv(
-        CSV_DB_PATH
+        CSV_DB_PATH_OLD
         + f"{szn}{'' if not bool(subfol) else f'/{subfol}'}/{'' if not bool(name) else f'{name}_'}{sit}{'' if not bool(szn) else f'_{szn}'}.csv",
     )
 

@@ -1,7 +1,7 @@
 # Purpose: ALL COMMONLY USED CONSTANTS
 
 # MARK: DATABASE PATHS
-DB_PATH = "/databases"
+DB_PATH = "databases"
 BY_TEAM_DB = DB_PATH + "/BY_TEAM"
 MODELS_DB = DB_PATH + "/MODELS"
 UTILS_DB = DB_PATH + "/UTILS"
@@ -19,9 +19,9 @@ INIT_TEMP_TxG = "INSERT INTO `txg_test` (`game_id`, `team`, `season`, `opposingT
 CONDITIONALS = ["=", "!=", ">", "<", ">=", "<=", "LIKE", "NOT LIKE", "IN", "NOT IN"]
 
 # ! RETIRED
-CSV_MODEL_PATH = "~/dev/_DATA/bet-nhl-data/_MODELS/"
-CSV_DB_PATH = "~/dev/_DATA/bet-nhl-data/"
-CSV_TEMP_PATH = "~/dev/_DATA/bet-nhl-data/_TEMP/"
+# CSV_MODEL_PATH = "~/dev/_DATA/bet-nhl-data/_MODELS/"
+CSV_DB_PATH_OLD = "~/dev/_DATA/bet-nhl-data/"
+CSV_TEMP_PATH_OLD = "~/dev/_DATA/bet-nhl-data/_TEMP/"
 
 # MARK: NHL TEAMS
 NHL_TEAMS = [

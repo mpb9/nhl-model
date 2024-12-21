@@ -3,8 +3,8 @@
 ## Personalized Complex Data
 
 ### Power Ranks
-_Power Ranks return values for each team at a given date_
 
+_Power Ranks return values for each team at a given date_
 _Each Power Rank can be transformed into a numerical ranking (ex. 1-32) if desired_
 
 * **Implied**: Each team's average odds vs. every other team. Initially calculates average odds across all games against each particular opponent, sums those calculated averages, and divides by number of opponents faced over the given sample's timespan.
@@ -19,97 +19,122 @@ _Each Power Rank can be transformed into a numerical ranking (ex. 1-32) if desir
 
 * **Strength of Schdule Adjusted Ranking Over Expectation**: The difference between each team's _Implied Rank_ and their Expected Rank based on their _SoS_. _(can specify to use Implied Matchup)_
 
-
 ### Home / Away Advantage
 
 * **Implied**: Each team's _Implied Home/Away Rank_ subtracted by their base _Implied Rank_
 
-_(method using Implied Matchup also available)_
+* _(method using Implied Matchup also available)_
 
 ### Strength of Schedule
 
 * **Implied**: Sum of each team's number of games played against each opponent multiplied by that opponent's _Implied Rank_, then divided by their total games played.
 
-_(method using Implied Matchup also available)_
+* _(method using Implied Matchup also available)_
 
-
-## _Initalizing Datasets_
+## Initalizing Datasets
 
 ### Rolling Averages
+
 ```python
 def rolling_avgs(
     df, num_games, include_null_next=True, suffix=True, add_objs=["season", "game_number", "is_home", "iceTime"],
 ):
 ```
+
 ```python
 def season_avgs(
     df, suffix=True, add_objs=["season", "game_number", "is_home", "iceTime"],
 ):
 ```
+
 > _previous **X** games_
+
 ```python
 rolling_avgs(df, num_games)
 ```
+
 > _season to date_
+
 ```python
 season_avgs(df)
 ```
 
 ### Trajectory
+
 ```python
 def trajectory(
     df, recent_num, past_num, add_objs=["season", "game_number", "is_home", "iceTime"], suffix=False,
 ):
 ```
+
 ```python
 def trajectory_season(
     df, recent_num, add_objs=["season", "game_number", "is_home", "iceTime"], suffix=False,
 ):
 ```
+
 ```python
 def trajectory_quick(
     recent_df, past_df, recent_num, past_num, is_season=False, add_objs=["season", "game_number", "is_home", "iceTime"], suffix=False,
 ):
 ```
+
 ```python
 def trajectory_linear(
     df, num_games, add_objs=["season", "game_number", "is_home", "iceTime"], suffix=False,
 ):
 ```
->  _previous **X** VS. **Y** games_
+
+> _previous **X** VS. **Y** games_
+
 ```python
 trajectory(df, recent_num, past_num)
 ```
+
 ```python
 trajectory_quick(df_X, df_Y, recent_num, past_num, False)
 ```
+
 > _previous **X** games VS. season to date_
-  ```python
+  
+```python
 trajectory_season(df, recent_num)
   ```
+
 ```python
 trajectory_quick(df_X, df_szn, recent_num, past_num, False)  
 ```
 
-## _Command Line_
+## Command Line
+
 > _Set up app's Virtual Python Environment_:
-```
-project-root % pip3 install virtualenv
-project-root % virtualenv myenv -p python3
-```
-> _Activate/deactivate Virtual Environment_:
-```
-project-root % myenv\bin\activate
-```
+
 ```console
-project-root % deactivate
+pip3 install virtualenv
+virtualenv myenv -p python3
 ```
+
+> _Activate/deactivate Virtual Environment_:
+
+```console
+source myenv/bin/activate
+```
+
+```console
+deactivate
+```
+
 > _Jupyter Notebook_ (virtual env must be active)
+
 ```console
 project-root % jupyter notebook
 ```
-> _Run as API using Flask_ (virtual env must be active)
-* Refer to _Basic Python Flask_ project for further details: [GitHub (mpb9/python-flask-basic)](https://github.com/mpb9/python-flask-basic)
+
+> _Run as GUI using Flask_ (virtual env must be active)
+
 ```console
-project-root % python3 -m flask --app api run --port 8000 --debug
+python3 -m flask --app gui run --port 8000 --debug
+:: Access GUI via http://localhost:8000/gui
 ```
+
+Refer to _Basic Python Flask_ project for further details: [GitHub (mpb9/python-flask-basic)](https://github.com/mpb9/python-flask-basic)

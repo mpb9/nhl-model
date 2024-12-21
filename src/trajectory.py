@@ -157,7 +157,7 @@ def trajectory_linear(
 # ! ADD TRAJECTORY OF POINT TOTAL ODDS FROM BEGINNING OF X SEASON TO CURRENT SEASON
 def trajectory_points_exp_odds(sample_szns=3, suffix=False):
     df_szn = pd.read_csv(
-        CSV_DB_PATH + f"season_odds/point_total_odds_TEMP.csv",
+        CSV_DB_PATH_OLD + f"season_odds/point_total_odds_TEMP.csv",
     )
     b0 = pd.DataFrame()
     b1 = pd.DataFrame()

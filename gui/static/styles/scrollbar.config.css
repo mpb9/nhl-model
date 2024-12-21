@@ -1,23 +1,24 @@
 /* Works on Chrome, Edge, and Safari */
 /* Width */
 *::-webkit-scrollbar {
-  width: 19px;
+  width: 20px;
 }
 
 /* Track */
 *::-webkit-scrollbar-track {
-  background: var(--dark);
+  background: var(--light);
 }
 
 /* Handle */
 *::-webkit-scrollbar-thumb {
-  background-color: var(--scroll-thumb);
-  border-radius: 1vh;
-  border: 0px solid var(--dark);
-  border-right-width: 1px;
+  /* background-color: var(--orange); */
+  background: linear-gradient(to bottom, var(--yellow) 0%, var(--orange) 100%);
+  border-radius: 8px;
+  border: 3px solid var(--light);
+  border-left-width: 0px;
 }
 
 /* Handle on hover */
 *::-webkit-scrollbar-thumb:hover {
-  background-color: var(--scroll-thumb-hover);
+  background-color: var(--secondary);
 }
